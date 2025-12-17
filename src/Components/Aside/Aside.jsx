@@ -1,0 +1,57 @@
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
+
+
+
+const Aside = () => {
+    const { role } = useContext(AuthContext); // ✅ destructure role here
+
+    return (
+        <aside className="w-64 bg-gray-100 h-screen p-4">
+            <h2 className="text-xl font-bold mb-4">Dashboard</h2>
+            <ul className="space-y-2">
+                <li>
+                    <Link to="/dashboard" className="block p-2 rounded hover:bg-gray-200">Home</Link>
+                </li>
+
+                {/* Donor Menu */}
+                {role === 'buyer' && (
+                    <>
+                        <li>
+                            <Link to="/dashboard/my-donation-requests" className="block p-2 rounded hover:bg-gray-200">My Requests</Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard/create-donation-request" className="block p-2 rounded hover:bg-gray-200">Create Request</Link>
+                        </li>
+                    </>
+                )}
+
+                {/* Admin Menu */}
+                {role === 'admin' && (
+                    <>
+                        <li>
+                            <Link to="/dashboard/all-users" className="block p-2 rounded hover:bg-gray-200">All Users</Link>
+                        </li>
+                        <li>
+                            <Link to="/dashboard/all-blood-donation-request" className="block p-2 rounded hover:bg-gray-200">Add Products</Link>
+                        </li>
+                    </>
+                )}
+
+                {/* Volunteer Menu */}
+                {role === 'Manager' && (
+                    <li>
+                        <Link to="/dashboard/all-blood-donation-request" className="block p-2 rounded hover:bg-gray-200">All </Link>
+                    </li>
+                )}
+
+                <li>
+                    <Link to="/dashboard/add-product" className="block p-2 rounded hover:bg-gray-200">Add Product</Link>
+                </li>
+            </ul>
+        </aside>
+    );
+};
+
+export default Aside;
