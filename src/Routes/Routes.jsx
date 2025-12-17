@@ -7,6 +7,8 @@ import RegistrationPage from '../Pages/RegistrationPage/RegistrationPage';
 import DashboardLayout from '../DashboardLayout/DashboardLayout';
 import MainDashboard from '../Pages/DashboardPages/MainDashboard';
 import AddProducts from '../Pages/DashboardPages/AddProducts';
+import ManageProducts from '../Pages/DashboardPages/ManageProducts';
+import UpdateProduct from '../Pages/DashboardPages/UpdateProduct';
 
 
 const router = createBrowserRouter([
@@ -38,10 +40,20 @@ const router = createBrowserRouter([
                 element: <MainDashboard></MainDashboard>
             },
             {
-                path: '/dashboard/add-product',
+                path: 'add-product',
                 element: <AddProducts></AddProducts>
 
-            }
+            },
+            {
+                path: 'manage-product',
+                element: <ManageProducts></ManageProducts>
+
+            },
+            {
+                path: 'update-product/:id',
+                element: <UpdateProduct></UpdateProduct>
+
+            },
         ]
     }
 ]);

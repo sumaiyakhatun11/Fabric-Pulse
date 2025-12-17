@@ -49,6 +49,9 @@ const Aside = () => {
                 <li>
                     <Link to="/dashboard/add-product" className="block p-2 rounded hover:bg-gray-200">Add Product</Link>
                 </li>
+                <li>
+                    <Link to="/dashboard/manage-product" className="block p-2 rounded hover:bg-gray-200">Manage Product</Link>
+                </li>
             </ul>
         </aside>
     );
