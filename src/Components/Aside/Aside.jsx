@@ -5,6 +5,8 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 
 const Aside = () => {
+
+    const { user } = useContext(AuthContext);
     const { role } = useContext(AuthContext); // ✅ destructure role here
 
     return (
@@ -40,9 +42,9 @@ const Aside = () => {
                 )}
 
                 {/* Volunteer Menu */}
-                {role === 'Manager' && (
+                {role === 'manager' && (
                     <li>
-                        <Link to="/dashboard/all-blood-donation-request" className="block p-2 rounded hover:bg-gray-200">All </Link>
+                        <Link to="/dashboard/all-users" className="block p-2 rounded hover:bg-gray-200">All Users </Link>
                     </li>
                 )}
 
@@ -51,6 +53,21 @@ const Aside = () => {
                 </li>
                 <li>
                     <Link to="/dashboard/manage-product" className="block p-2 rounded hover:bg-gray-200">Manage Product</Link>
+                </li>
+
+                <li>
+                    <Link to="/profile">
+                        <div className='flex items-center gap-2'>
+                            <img
+                                src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.jpg"}
+                                referrerPolicy="no-referrer"
+                                alt="Profile"
+                                className="w-10 h-10 rounded-full border-2 border-[#713600] hover:scale-105 transition"
+                            />
+                            <p>My Profile</p>
+                        </div>
+                    </Link>
+
                 </li>
             </ul>
         </aside>

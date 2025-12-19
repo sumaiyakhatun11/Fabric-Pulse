@@ -46,10 +46,17 @@ const Navbar = () => {
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-8 text-black font-medium">
                 <Link to="/" className="hover:text-[#713600]">Home</Link>
+                <Link to="/all-products" className="hover:text-[#713600]">All Products</Link>
+
+
 
 
                 {user && (
                     <>
+                        <div className="flex items-center gap-8 text-black font-medium">
+
+                            <Link to="/dashboard" className="hover:text-[#713600]">Dashboard</Link>
+                        </div>
                         <Link to="/profile">
                             <img
                                 src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.jpg"}
@@ -58,6 +65,8 @@ const Navbar = () => {
                                 className="w-10 h-10 rounded-full border-2 border-[#713600] hover:scale-105 transition"
                             />
                         </Link>
+
+
                     </>
                 )}
 

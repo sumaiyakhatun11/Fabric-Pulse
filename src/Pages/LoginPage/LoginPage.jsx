@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { showToast } from '../../Shared/toast';
 import { AuthContext } from '../../Provider/AuthProvider';
+import axios from 'axios';
 
 const LoginPage = () => {
     const { login, signInWithGoogle } = useContext(AuthContext);
@@ -30,17 +31,36 @@ const LoginPage = () => {
 
     }
 
-    const handleContinueWithGoogle = () => {
-        signInWithGoogle()
-            .then(() => {
-                navigate('/');
-            })
-            .catch(error => {
-                showToast(`${error.code} - ${error.message}`, 'error')
-            });
+    const handleContinueWithGoogle = async () => {
+        try {
+            const result = await signInWithGoogle();
+            const user = result.user;
 
+            const userInfo = {
+                name: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+                role: 'Buyer',
+                status: 'pending',
 
-    }
+            };
+
+            // check if user already exists in DB
+            const res = await axios.get(
+                `http://localhost:3000/users/email/${user.email}`
+            );
+
+            if (!res.data) {
+                await axios.post('http://localhost:3000/users', userInfo);
+            }
+
+            showToast('Login successful', 'success');
+            navigate('/');
+
+        } catch (error) {
+            showToast(error.message, 'error');
+        }
+    };
 
     const handleForgot = () => {
         navigate(`/forgotPassword/${email}`)

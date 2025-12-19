@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { use, useContext, useState } from 'react';
 import { Await } from 'react-router';
-import useAxios from '../../Hooks/Hooks';
+// import useAxios from '../../Hooks/Hooks';
 import { AuthContext } from '../../Provider/AuthProvider';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AddProducts = () => {
     const { user } = useContext(AuthContext);
 
-    const axiosInstance = useAxios();
+    // const axiosInstance = useAxios();
+    const axiosSecure = useAxiosSecure();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,7 +60,7 @@ const AddProducts = () => {
             return;
         }
         else {
-            axiosInstance.post('/products', formData)
+            axiosSecure.post('/products', formData)
                 .then(response => {
                     console.log('Product added:', response.data);
                     alert('Product added successfully');

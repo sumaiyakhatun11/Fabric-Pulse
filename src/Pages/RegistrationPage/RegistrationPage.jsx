@@ -101,17 +101,37 @@ const RegistrationPage = () => {
 
     }
 
-    const handleContinueWithGoogle = () => {
-        signInWithGoogle()
-            .then(() => {
-                navigate('/');
-            })
-            .catch(error => {
-                showToast(`${error.code} - ${error.message}`, 'error')
-            });
+    const handleContinueWithGoogle = async () => {
+        try {
+            const result = await signInWithGoogle();
+            const user = result.user;
 
+            const userInfo = {
+                name: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+                role: 'buyer',
+                status: 'pending',
 
-    }
+            };
+
+            // check if user already exists in DB
+            const res = await axios.get(
+                `http://localhost:3000/users/email/${user.email}`
+            );
+
+            if (!res.data) {
+                await axios.post('http://localhost:3000/users', userInfo);
+            }
+
+            showToast('Login successful', 'success');
+            navigate('/');
+
+        } catch (error) {
+            showToast(error.message, 'error');
+        }
+    };
+
 
 
 
@@ -168,8 +188,8 @@ const RegistrationPage = () => {
                         <label className="label">Role</label>
                         <select name="role" className="select select-neutral" required>
                             <option value="" disabled>Select Role</option>
-                            <option value="Manager">Manager</option>
-                            <option value="Buyer">Buyer</option>
+                            <option value="manager">Manager</option>
+                            <option value="buyer">Buyer</option>
                         </select>
                     </div>
 
