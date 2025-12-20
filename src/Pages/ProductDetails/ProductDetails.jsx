@@ -57,7 +57,7 @@ const ProductDetails = () => {
                     <p className="mb-2">{product.description}</p>
 
                     <p><strong>Category:</strong> {product.category}</p>
-                    <p><strong>Price:</strong> ৳{product.price}</p>
+                    <p><strong>Price:</strong> ৳ {product.price}</p>
                     <p><strong>Available:</strong> {product.quantity}</p>
                     <p><strong>Minimum Order:</strong> {product.moq}</p>
                     <p><strong>Payment:</strong> {product.payment}</p>

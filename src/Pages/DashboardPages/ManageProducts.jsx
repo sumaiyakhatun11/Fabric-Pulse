@@ -102,7 +102,7 @@ const ManageProducts = () => {
                                         <p className="text-sm opacity-60">{product.category}</p>
                                     </td>
 
-                                    <td>${product.price}</td>
+                                    <td>৳ {product.price}</td>
 
                                     <td className="capitalize">{product.payment}</td>
 

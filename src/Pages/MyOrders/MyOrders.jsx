@@ -42,7 +42,7 @@ const MyOrders = () => {
                                     <td>{index + 1}</td>
                                     <td>{order.productName}</td>
                                     <td>{order.quantity}</td>
-                                    <td>${order.totalPrice}</td>
+                                    <td>৳ {order.totalPrice}</td>
                                     <td>{order.paymentMethod}</td>
                                     <td>
                                         <span className="badge badge-warning">

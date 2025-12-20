@@ -16,6 +16,9 @@ import AllProducts from '../Pages/AllProducts/AllProducts';
 import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 import MyOrders from '../Pages/MyOrders/MyOrders';
 import BookingForm from '../Pages/BookingPage/BookingPage';
+import AboutUs from '../Components/AboutUs/AboutUs';
+import ContactUs from '../Components/ContactUs/ContactUs';
+import PaymentSuccess from '../Pages/PaymentSuccess/PaymentSuccess';
 
 
 const router = createBrowserRouter([
@@ -52,6 +55,22 @@ const router = createBrowserRouter([
                 path: '/booking/:id',
                 element: <PrivateRoutes><BookingForm></BookingForm></PrivateRoutes>
             },
+            {
+                path: '/about-us',
+                element: <PrivateRoutes><AboutUs></AboutUs></PrivateRoutes>
+            },
+            {
+                path: '/contact',
+                element: <ContactUs></ContactUs>
+            },
+            {
+                path: '/payment-success',
+                element: <PrivateRoutes><PaymentSuccess></PaymentSuccess></PrivateRoutes>
+            },
+            {
+                path: '/my-orders',
+                element: <PrivateRoutes><MyOrders></MyOrders></PrivateRoutes>
+            },
         ]
     },
     {
@@ -80,6 +99,11 @@ const router = createBrowserRouter([
             {
                 path: 'all-users',
                 element: <AllUsers></AllUsers>
+
+            },
+            {
+                path: 'my-orders',
+                element: <MyOrders></MyOrders>
 
             },
         ]

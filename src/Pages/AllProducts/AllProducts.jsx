@@ -33,7 +33,7 @@ const AllProducts = () => {
                             <div className="p-4">
                                 <h3 className="font-semibold text-xl mb-2">{product.name}</h3>
                                 <p className="text-gray-600 mb-1"><strong>Category:</strong> {product.category}</p>
-                                <p className="text-gray-600 mb-1"><strong>Price:</strong> ${product.price}</p>
+                                <p className="text-gray-600 mb-1"><strong>Price:</strong> ৳ {product.price}</p>
                                 <p className="text-gray-600 mb-4"><strong>Available:</strong> {product.availableQuantity}</p>
 
                                 <Link

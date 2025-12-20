@@ -39,7 +39,7 @@ const Navbar = () => {
             <div className="flex items-center gap-2 text-2xl font-bold text-[#827e7b] tracking-wide">
                 <img className="h-15 rounded-4xl" src={logo} alt="Logo" />
                 <Link to="/">
-                    Jonaki
+                    FabricPulse
                 </Link>
             </div>
 
@@ -47,6 +47,8 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-8 text-black font-medium">
                 <Link to="/" className="hover:text-[#713600]">Home</Link>
                 <Link to="/all-products" className="hover:text-[#713600]">All Products</Link>
+                <Link to="/about-us" className="hover:text-[#713600]">About Us</Link>
+                <Link to="/contact" className="hover:text-[#713600]">Contact Us</Link>
 
 
 
@@ -115,7 +117,9 @@ const Navbar = () => {
             {menuOpen && (
                 <div className="md:hidden mt-4 flex flex-col gap-4 px-4">
                     <Link to="/" className="hover:text-[#713600]">Home</Link>
-                    <Link to="/services" className="hover:text-[#713600]">Pets & Supplies</Link>
+                    <Link to="/all-products" className="hover:text-[#713600]">All Products</Link>
+                    <Link to="/about-us" className="hover:text-[#713600]">About Us</Link>
+                    <Link to="/contact" className="hover:text-[#713600]">Contact Us</Link>
 
                     {user && (
                         <>
