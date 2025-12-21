@@ -26,6 +26,7 @@ import TrackOrder from '../Pages/DashboardPages/AddTracking';
 import AddTracking from '../Pages/DashboardPages/AddTracking';
 import ViewTracking from '../Pages/DashboardPages/ViewTracking';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage'
+import MyTracking from '../Pages/DashboardPages/MyTracking';
 
 
 const router = createBrowserRouter([
@@ -137,6 +138,11 @@ const router = createBrowserRouter([
             {
                 path: 'view-tracking/:order_id',
                 element: <ViewTracking></ViewTracking>
+
+            },
+            {
+                path: 'my-tracking',
+                element: <MyTracking></MyTracking>
 
             },
         ]

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Profile = () => {
-    const { user, updateUserProfile, logout } = useContext(AuthContext);
+    const { user, updateUserProfile, logOut } = useContext(AuthContext);
 
     const [isOpen, setIsOpen] = useState(false);
     const [name, setName] = useState(user?.displayName || "");
@@ -24,12 +24,9 @@ const Profile = () => {
     };
 
     const handleLogout = () => {
-        logout()
-            .then(() => {
-                // Optional: redirect to login page
-                window.location.href = "/";
-            })
-            .catch(err => console.error(err));
+        logOut()
+            .then(() => showToast('Logged out', 'success'))
+            .catch((error) => showToast(String(error), 'error'));
     };
 
     useEffect(() => {
@@ -61,12 +58,14 @@ const Profile = () => {
                     >
                         Update Profile
                     </button>
+
                     <button
                         onClick={handleLogout}
-                        className="bg-red-600 p-2 rounded-2xl text-white hover:bg-red-500 w-1/2"
+                        className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#713600] via-[#8a4200] to-[#a64e00] hover:from-[#5a2b00] hover:via-[#713600] hover:to-[#8a4200] transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
                     >
                         Logout
                     </button>
+
                 </div>
             </div>
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-
+import { Link } from 'react-router-dom'; // ✅ Correct import
 
 const ApprovedOrders = () => {
     const axiosSecure = useAxiosSecure();
@@ -11,6 +11,10 @@ const ApprovedOrders = () => {
         axiosSecure.get('/approved-orders')
             .then(res => {
                 setOrders(res.data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error('Failed to fetch approved orders', err);
                 setLoading(false);
             });
     }, [axiosSecure]);
@@ -40,20 +44,20 @@ const ApprovedOrders = () => {
                             <td>{order.userEmail}</td>
                             <td>{order.productTitle}</td>
                             <td>{order.quantity}</td>
-                            <td>{new Date(order.approvedAt).toLocaleDateString()}</td>
+                            <td>{order.approvedAt ? new Date(order.approvedAt).toLocaleDateString() : 'N/A'}</td>
                             <td className="flex gap-2">
-                                <a
-                                    href={`/dashboard/view-tracking/${order._id}`}
+                                <Link
+                                    to={`/dashboard/view-tracking/${order._id}`}
                                     className="btn btn-xs btn-info"
                                 >
                                     View Tracking
-                                </a>
-                                <a
-                                    href={`/dashboard/add-tracking/${order._id}`}
+                                </Link>
+                                <Link
+                                    to={`/dashboard/add-tracking/${order._id}`}
                                     className="btn btn-xs btn-success"
                                 >
                                     Add Tracking
-                                </a>
+                                </Link>
                             </td>
                         </tr>
                     ))}

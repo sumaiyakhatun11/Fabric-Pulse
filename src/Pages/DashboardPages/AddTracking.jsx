@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AddTracking = () => {
-    const { orderId } = useParams();
+    const { order_id } = useParams();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
 
@@ -23,21 +23,20 @@ const AddTracking = () => {
         e.preventDefault();
 
         if (!form.status) {
-            alert('Status is required', 'error');
+            alert('Status is required');
             return;
         }
 
         try {
             await axiosSecure.post('/tracking', {
-                orderId,
+                order_id,        // 🔥 attach here
                 ...form
             });
 
-            alert('Tracking added successfully', 'success');
-            navigate(`/dashboard/view-tracking/${orderId}`);
+            navigate(`/dashboard/view-tracking/${order_id}`);
         } catch (err) {
             console.error(err);
-            alert('Failed to add tracking', 'error');
+            alert('Failed to add tracking');
         }
     };
 
@@ -46,8 +45,6 @@ const AddTracking = () => {
             <h2 className="text-2xl font-bold mb-4">Add Tracking Update</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-
-                {/* Status */}
                 <select
                     name="status"
                     className="select select-bordered w-full"
@@ -64,20 +61,18 @@ const AddTracking = () => {
                     <option>Out for Delivery</option>
                 </select>
 
-                {/* Location */}
                 <input
                     type="text"
                     name="location"
-                    placeholder="Location (optional)"
+                    placeholder="Location"
                     className="input input-bordered w-full"
                     value={form.location}
                     onChange={handleChange}
                 />
 
-                {/* Note */}
                 <textarea
                     name="note"
-                    placeholder="Additional note"
+                    placeholder="Note"
                     className="textarea textarea-bordered w-full"
                     value={form.note}
                     onChange={handleChange}
