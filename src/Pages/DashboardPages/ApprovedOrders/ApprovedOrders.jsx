@@ -43,7 +43,7 @@ const ApprovedOrders = () => {
                             <td>{new Date(order.approvedAt).toLocaleDateString()}</td>
                             <td className="flex gap-2">
                                 <a
-                                    href={`/dashboard/tracking/${order._id}`}
+                                    href={`/dashboard/view-tracking/${order._id}`}
                                     className="btn btn-xs btn-info"
                                 >
                                     View Tracking

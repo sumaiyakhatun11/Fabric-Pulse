@@ -24,12 +24,15 @@ import OrderDetails from '../Pages/DashboardPages/OrderDetails';
 import ApprovedOrders from '../Pages/DashboardPages/ApprovedOrders/ApprovedOrders';
 import TrackOrder from '../Pages/DashboardPages/AddTracking';
 import AddTracking from '../Pages/DashboardPages/AddTracking';
+import ViewTracking from '../Pages/DashboardPages/ViewTracking';
+import ErrorPage from '../Pages/ErrorPage/ErrorPage'
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout></RootLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -129,6 +132,11 @@ const router = createBrowserRouter([
             {
                 path: 'add-tracking/:order_id',
                 element: <AddTracking></AddTracking>
+
+            },
+            {
+                path: 'view-tracking/:order_id',
+                element: <ViewTracking></ViewTracking>
 
             },
         ]

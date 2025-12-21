@@ -19,6 +19,8 @@ const ManageProducts = () => {
         axiosInstance
             .get(`/manager/products/${user.email}`)
             .then(res => {
+                console.log(res.data);
+
                 setProducts(res.data);
                 setLoading(false);
             })
