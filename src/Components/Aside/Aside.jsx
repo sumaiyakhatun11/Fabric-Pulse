@@ -25,40 +25,39 @@ const Aside = () => {
                             <Link to="/dashboard/all-users" className="block p-2 rounded hover:bg-gray-200">All Users</Link>
                         </li>
                         <li>
-                            <Link to="/dashboard/all-blood-donation-request" className="block p-2 rounded hover:bg-gray-200">Add Products</Link>
+                            <Link to="/dashboard/all-products" className="block p-2 rounded hover:bg-gray-200">All Products</Link>
                         </li>
                     </>
                 )}
 
-                {/* Volunteer Menu */}
+                {/* Manager Menu */}
                 {role === 'manager' && (
-                    <li>
+                    <>
                         <li>
-                            <Link to="/dashboard/add-product" className="block p-2 rounded hover:bg-gray-200">Add Product</Link>
+                            <Link to="/dashboard/add-product" className="block p-2 rounded hover:bg-gray-200">➕ Add Product</Link>
                         </li>
                         <li>
-                            <Link to="/dashboard/manage-product" className="block p-2 rounded hover:bg-gray-200">Manage Product</Link>
+                            <Link to="/dashboard/manage-product" className="block p-2 rounded hover:bg-gray-200">📦 Manage Product</Link>
                         </li>
                         <li>
-                            <Link to="/dashboard/pending-orders" className="block p-2 rounded hover:bg-gray-200">Pending Orders</Link>
+                            <Link to="/dashboard/pending-orders" className="block p-2 rounded hover:bg-gray-200">⏳ Pending Orders</Link>
                         </li>
-
                         <li>
-                            <Link to="/dashboard/approved-orders" className="block p-2 rounded hover:bg-gray-200">Approved Orders</Link>
+                            <Link to="/dashboard/approved-orders" className="block p-2 rounded hover:bg-gray-200">✅ Approved Orders</Link>
                         </li>
-                    </li>
+                    </>
                 )}
+                {/* buyer Menu */}
 
                 {role === 'buyer' && (
-                    <li>
+                    <>
                         <li>
-                            <Link to="/dashboard/my-orders" className="block p-2 rounded hover:bg-gray-200">My Orders</Link>
+                            <Link to="/dashboard/my-orders" className="block p-2 rounded hover:bg-gray-200">📋 My Orders</Link>
                         </li>
                         <li>
-                            <Link to="/dashboard/my-tracking" className="block p-2 rounded hover:bg-gray-200">My Tracking</Link>
+                            <Link to="/dashboard/my-tracking" className="block p-2 rounded hover:bg-gray-200">🚚 My Tracking</Link>
                         </li>
-
-                    </li>
+                    </>
                 )}
 
 

@@ -38,7 +38,7 @@ const Footer = () => {
                     <p className="text-sm text-gray-600">Get product news and offers.</p>
                     <form className="space-y-2">
                         <input type="email" placeholder="you@example.com" className="input input-bordered w-full" />
-                        <button type="button" className="btn btn-neutral w-full">Subscribe</button>
+                        <button type="button" className="btn btn-primary w-full">Subscribe</button>
                     </form>
                 </div>
             </div>

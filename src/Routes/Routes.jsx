@@ -27,7 +27,12 @@ import AddTracking from '../Pages/DashboardPages/AddTracking';
 import ViewTracking from '../Pages/DashboardPages/ViewTracking';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage'
 import MyTracking from '../Pages/DashboardPages/MyTracking';
-
+import UserDashboard from '../Pages/DashboardPages/UserDashboard';
+import DashboardRouter from '../Pages/DashboardPages/DashboardRouter';
+import ManagerDashboard from '../Pages/DashboardPages/ManagerDashboard';
+import ManagerLandingPage from '../Pages/DashboardPages/ManagerLandingPage';
+import BuyerLandingPage from '../Pages/DashboardPages/BuyerLandingPage';
+import AllProductsTable from '../Pages/DashboardPages/AllProductsTable';
 
 const router = createBrowserRouter([
     {
@@ -88,7 +93,19 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
+                element: <DashboardRouter></DashboardRouter>
+            },
+            {
+                path: 'admin',
                 element: <MainDashboard></MainDashboard>
+            },
+            {
+                path: 'manager',
+                element: <ManagerLandingPage></ManagerLandingPage>
+            },
+            {
+                path: 'user',
+                element: <BuyerLandingPage></BuyerLandingPage>
             },
             {
                 path: 'add-product',
@@ -108,6 +125,11 @@ const router = createBrowserRouter([
             {
                 path: 'all-users',
                 element: <AllUsers></AllUsers>
+
+            },
+            {
+                path: 'all-products',
+                element: <AllProductsTable></AllProductsTable>
 
             },
             {

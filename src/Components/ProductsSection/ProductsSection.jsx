@@ -36,7 +36,7 @@ const ProductsSection = () => {
 
                                 <Link
                                     to={`/product/${product._id}`}
-                                    className="inline-block w-full text-center bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+                                    className="btn btn-primary w-full"
                                 >
                                     View Details
                                 </Link>

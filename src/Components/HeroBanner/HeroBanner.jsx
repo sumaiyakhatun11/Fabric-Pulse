@@ -36,7 +36,7 @@ const HeroBanner = () => {
                                 </p>
                                 <Link
                                     to="/all-products"
-                                    className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded"
+                                    className="btn btn-primary px-6 py-3 rounded"
                                 >
                                     View Products
                                 </Link>
@@ -60,7 +60,7 @@ const HeroBanner = () => {
                                 </p>
                                 <Link
                                     to="/all-products"
-                                    className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded"
+                                    className="btn btn-primary px-6 py-3 rounded"
                                 >
                                     Explore Products
                                 </Link>
@@ -84,7 +84,7 @@ const HeroBanner = () => {
                                 </p>
                                 <Link
                                     to="/all-products"
-                                    className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded"
+                                    className="btn btn-primary px-6 py-3 rounded"
                                 >
                                     Get Started
                                 </Link>

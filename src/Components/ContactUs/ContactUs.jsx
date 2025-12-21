@@ -35,7 +35,7 @@ const ContactUs = () => {
                     </div>
                     <div className="flex gap-3 pt-2">
                         <a
-                            className="btn btn-sm btn-neutral"
+                            className="btn btn-sm btn-primary"
                             href="https://mail.google.com/mail/?view=cm&fs=1&to=sumaiyameghla1111@gmail.com"
                             target="_blank"
                             rel="noreferrer"
@@ -65,7 +65,7 @@ const ContactUs = () => {
                         <div className="label"><span className="label-text">Message</span></div>
                         <textarea name="message" className="textarea textarea-bordered h-28" placeholder="Type your message" required></textarea>
                     </label>
-                    <button type="submit" className="btn btn-neutral w-full">Send message</button>
+                    <button type="submit" className="btn btn-primary w-full">Send message</button>
                     {status && <p className="text-sm text-success text-center">{status}</p>}
                 </form>
             </div>
