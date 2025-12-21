@@ -19,6 +19,11 @@ import BookingForm from '../Pages/BookingPage/BookingPage';
 import AboutUs from '../Components/AboutUs/AboutUs';
 import ContactUs from '../Components/ContactUs/ContactUs';
 import PaymentSuccess from '../Pages/PaymentSuccess/PaymentSuccess';
+import PendingOrders from '../Pages/DashboardPages/PendingOrders';
+import OrderDetails from '../Pages/DashboardPages/OrderDetails';
+import ApprovedOrders from '../Pages/DashboardPages/ApprovedOrders/ApprovedOrders';
+import TrackOrder from '../Pages/DashboardPages/AddTracking';
+import AddTracking from '../Pages/DashboardPages/AddTracking';
 
 
 const router = createBrowserRouter([
@@ -104,6 +109,26 @@ const router = createBrowserRouter([
             {
                 path: 'my-orders',
                 element: <MyOrders></MyOrders>
+
+            },
+            {
+                path: 'pending-orders',
+                element: <PendingOrders></PendingOrders>
+
+            },
+            {
+                path: 'order/:id',
+                element: <OrderDetails></OrderDetails>
+
+            },
+            {
+                path: 'approved-orders',
+                element: <ApprovedOrders></ApprovedOrders>
+
+            },
+            {
+                path: 'add-tracking/:order_id',
+                element: <AddTracking></AddTracking>
 
             },
         ]

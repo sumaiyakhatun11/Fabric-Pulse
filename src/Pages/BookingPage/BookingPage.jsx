@@ -110,7 +110,7 @@ const BookingForm = () => {
             if (product.payment === 'payfirst') {
                 handlePayment();
             } else {
-                navigate('/payment-success');
+                navigate('/my-orders');
             }
         } catch (error) {
             console.error('Order submission failed:', error);
