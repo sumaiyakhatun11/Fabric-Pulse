@@ -11,10 +11,10 @@ const Aside = () => {
 
     return (
         <aside className="w-64 bg-gray-100 h-screen p-4">
-            <h2 className="text-xl font-bold mb-4">Dashboard</h2>
+            <Link to="/dashboard" className="text-xl font-bold mb-4 block">Dashboard</Link>
             <ul className="space-y-2">
                 <li>
-                    <Link to="/dashboard" className="block p-2 rounded hover:bg-gray-200">Home</Link>
+                    <Link to="/" className="block p-2 rounded hover:bg-gray-200">Back to Home</Link>
                 </li>
 
 
