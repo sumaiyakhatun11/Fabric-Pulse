@@ -12,7 +12,7 @@ const feedbacks = [
 const CustomerFeedback = () => {
     return (
         <section className="py-20">
-            <h2 className="text-4xl font-bold mb-10 text-center">Customer Feedback</h2>
+            <h2 className="text-4xl font-bold mb-10 text-center text-base-content">Customer Feedback</h2>
             <Carousel
                 autoPlay
                 infinite
@@ -25,11 +25,11 @@ const CustomerFeedback = () => {
                 {feedbacks.map((f, idx) => (
                     <motion.div
                         key={idx}
-                        className="bg-white p-6 rounded-lg shadow-lg m-4"
+                        className="bg-base-100 border border-base-300 p-6 rounded-lg shadow m-4"
                         whileHover={{ scale: 1.05 }}
                     >
-                        <p className="text-gray-700 mb-3">"{f.text}"</p>
-                        <h4 className="font-bold">{f.name}</h4>
+                        <p className="text-base-content/80 mb-3">"{f.text}"</p>
+                        <h4 className="font-bold text-base-content">{f.name}</h4>
                     </motion.div>
                 ))}
             </Carousel>

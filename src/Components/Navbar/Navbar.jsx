@@ -39,16 +39,17 @@ const Navbar = () => {
             <div className="flex items-center gap-2 text-2xl font-bold text-[#827e7b] tracking-wide">
                 <img className="h-15 rounded-4xl" src={logo} alt="Logo" />
                 <Link to="/">
-                    FabricPulse
+                    <span className='text-purple-800'>Fabric</span><span className='text-pink-500'>Pulse</span>
                 </Link>
             </div>
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-8 text-black font-medium">
-                <Link to="/" className="hover:text-[#713600]">Home</Link>
-                <Link to="/all-products" className="hover:text-[#713600]">All Products</Link>
-                <Link to="/about-us" className="hover:text-[#713600]">About Us</Link>
-                <Link to="/contact" className="hover:text-[#713600]">Contact Us</Link>
+                <Link to="/" className="hover:text-purple-800">Home</Link>
+                <Link to="/about-us" className="hover:text-purple-800">About Us</Link>
+                <Link to="/contact" className="hover:text-purple-800">Contact Us</Link>
+                <Link to="/all-products" className="hover:text-purple-800">All Products</Link>
+
 
 
 
@@ -57,14 +58,14 @@ const Navbar = () => {
                     <>
                         <div className="flex items-center gap-8 text-black font-medium">
 
-                            <Link to="/dashboard" className="hover:text-[#713600]">Dashboard</Link>
+                            <Link to="/dashboard" className="hover:text-purple-800">Dashboard</Link>
                         </div>
                         <Link to="/profile">
                             <img
                                 src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.jpg"}
                                 referrerPolicy="no-referrer"
                                 alt="Profile"
-                                className="w-10 h-10 rounded-full border-2 border-[#713600] hover:scale-105 transition"
+                                className="w-10 h-10 rounded-full border-2 border-purple-800 hover:scale-105 transition"
                             />
                         </Link>
 
@@ -86,14 +87,14 @@ const Navbar = () => {
                 {user ? (
                     <button
                         onClick={handleLogout}
-                        className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#713600] via-[#8a4200] to-[#a64e00] hover:from-[#5a2b00] hover:via-[#713600] hover:to-[#8a4200] transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+                        className="btn btn-primary"
                     >
                         Logout
                     </button>
                 ) : (
                     <Link
                         to="/login"
-                        className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#713600] via-[#8a4200] to-[#a64e00] hover:from-[#5a2b00] hover:via-[#713600] hover:to-[#8a4200] transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+                        className="btn btn-primary"
                     >
                         Login
                     </Link>
@@ -116,22 +117,22 @@ const Navbar = () => {
             {/* Mobile Menu */}
             {menuOpen && (
                 <div className="md:hidden mt-4 flex flex-col gap-4 px-4">
-                    <Link to="/" className="hover:text-[#713600]">Home</Link>
-                    <Link to="/all-products" className="hover:text-[#713600]">All Products</Link>
-                    <Link to="/about-us" className="hover:text-[#713600]">About Us</Link>
-                    <Link to="/contact" className="hover:text-[#713600]">Contact Us</Link>
+                    <Link to="/" className="hover:text-purple-800">Home</Link>
+                    <Link to="/all-products" className="hover:text-purple-800">All Products</Link>
+                    <Link to="/about-us" className="hover:text-purple-800">About Us</Link>
+                    <Link to="/contact" className="hover:text-purple-800">Contact Us</Link>
 
                     {user && (
                         <>
-                            <Link to="/addServices" className="hover:text-[#713600]">Add Listing</Link>
-                            <Link to="/myServices" className="hover:text-[#713600]">My Listings</Link>
-                            <Link to="/myOrders" className="hover:text-[#713600]">My Orders</Link>
+                            <Link to="/addServices" className="hover:text-purple-800">Add Listing</Link>
+                            <Link to="/myServices" className="hover:text-purple-800">My Listings</Link>
+                            <Link to="/myOrders" className="hover:text-purple-800">My Orders</Link>
                             <Link to="/profile" className="flex items-center gap-2">
                                 <img
                                     src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.jpg"}
                                     referrerPolicy="no-referrer"
                                     alt="Profile"
-                                    className="w-10 h-10 rounded-full border-2 border-[#713600]"
+                                    className="w-10 h-10 rounded-full border-2 border-purple-800"
                                 />
                                 Profile
                             </Link>
@@ -153,14 +154,14 @@ const Navbar = () => {
                     {user ? (
                         <button
                             onClick={handleLogout}
-                            className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#713600] via-[#8a4200] to-[#a64e00] hover:from-[#5a2b00] hover:via-[#713600] hover:to-[#8a4200] transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+                            className="btn btn-primary"
                         >
                             Logout
                         </button>
                     ) : (
                         <Link
                             to="/login"
-                            className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#713600] via-[#8a4200] to-[#a64e00] hover:from-[#5a2b00] hover:via-[#713600] hover:to-[#8a4200] transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+                            className="btn btn-primary"
                         >
                             Login
                         </Link>

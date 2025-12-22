@@ -10,10 +10,14 @@ const PendingOrders = () => {
     const axiosSecure = useAxiosSecure();
     const axiosInstance = useAxios();
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
+    const { user, dbUser } = useContext(AuthContext);
 
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        document.title = "Pending Orders | FabricPulse";
+    }, []);
 
     useEffect(() => {
         axiosSecure.get('/pending-orders')
@@ -26,7 +30,13 @@ const PendingOrders = () => {
                 setLoading(false);
             });
     }, [axiosSecure])
+    const isSuspended = dbUser?.status === 'suspended';
+
     const handleApprove = async (id) => {
+        if (isSuspended) {
+            showToast('Suspended accounts cannot approve orders', 'error');
+            return;
+        }
         if (!window.confirm('Approve this order?')) return;
         try {
             await axiosSecure.put(`/orders/approve/${id}`);
@@ -39,6 +49,10 @@ const PendingOrders = () => {
     };
 
     const handleReject = async (id) => {
+        if (isSuspended) {
+            showToast('Suspended accounts cannot reject orders', 'error');
+            return;
+        }
         if (!window.confirm('Reject this order?')) return;
         try {
             await axiosSecure.put(`/rejected-orders/${id}`);
@@ -85,8 +99,8 @@ const PendingOrders = () => {
                                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                                 <td className="flex gap-2">
                                     <button onClick={() => handleView(order._id)} className="btn btn-xs btn-info">View</button>
-                                    <button onClick={() => handleApprove(order._id)} className="btn btn-xs btn-success">Approve</button>
-                                    <button onClick={() => handleReject(order._id)} className="btn btn-xs btn-error">Reject</button>
+                                    <button onClick={() => handleApprove(order._id)} className="btn btn-xs btn-success" disabled={isSuspended}>Approve</button>
+                                    <button onClick={() => handleReject(order._id)} className="btn btn-xs btn-error" disabled={isSuspended}>Reject</button>
                                 </td>
                             </tr>
                         ))}

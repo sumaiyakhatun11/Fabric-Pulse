@@ -1,2 +1,31 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* App-wide purple→pink gradient for primary buttons */
+.btn.btn-primary {
+    background-image: linear-gradient(to right, #7c3aed, #ec4899) !important;
+    /* purple-600 → pink-500 */
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.btn.btn-primary:hover {
+    filter: brightness(1.05);
+}
+
+.btn.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn.btn-primary.btn-disabled,
+.btn.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: none;
+}
+
+.btn.btn-primary:focus-visible {
+    outline: 2px solid #a78bfa;
+    /* violet-300 */
+    outline-offset: 2px;
+}

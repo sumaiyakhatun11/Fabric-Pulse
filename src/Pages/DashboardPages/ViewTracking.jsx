@@ -11,6 +11,10 @@ const ViewTracking = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        document.title = "View Tracking | FabricPulse";
+    }, []);
+
+    useEffect(() => {
         if (!order_id) return;
 
         axiosSecure.get(`/view-tracking/${order_id}`)

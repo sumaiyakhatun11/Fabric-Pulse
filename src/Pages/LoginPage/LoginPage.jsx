@@ -40,7 +40,7 @@ const LoginPage = () => {
                 name: user.displayName,
                 email: user.email,
                 photoURL: user.photoURL,
-                role: 'Buyer',
+                role: 'buyer',
                 status: 'pending',
 
             };
@@ -62,9 +62,6 @@ const LoginPage = () => {
         }
     };
 
-    const handleForgot = () => {
-        navigate(`/forgotPassword/${email}`)
-    }
     useEffect(() => {
         document.title = "Login | Game Portal";
     }, []);
@@ -103,11 +100,7 @@ const LoginPage = () => {
                             className="input input-bordered"
                             name='password'
                         />
-                        <label className="label " onClick={handleForgot}>
-                            <a className="label-text-alt link link-hover">
-                                Forgot password?
-                            </a>
-                        </label>
+                        {/* Forgot password removed */}
                     </div>
 
                     <div className="form-control mt-4">

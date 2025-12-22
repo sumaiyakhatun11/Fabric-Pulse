@@ -11,6 +11,7 @@ const BookingForm = () => {
     const axiosSecure = useAxiosSecure();
     const axiosInstance = useAxios();
 
+    const [dbUser, setDbUser] = useState(null);
     const [product, setProduct] = useState(null);
     const [formData, setFormData] = useState({
         firstName: '',
@@ -21,6 +22,10 @@ const BookingForm = () => {
         notes: '',
     });
     const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        document.title = "Place Order | FabricPulse";
+    }, []);
 
     // Fetch product
     useEffect(() => {
@@ -75,6 +80,15 @@ const BookingForm = () => {
             });
 
             if (res.data.url) {
+                // Fetch user details
+                useEffect(() => {
+                    if (user?.email) {
+                        axiosSecure.get(`/users/email/${user.email}`)
+                            .then(res => setDbUser(res.data))
+                            .catch(err => console.error(err));
+                    }
+                }, [user, axiosSecure]);
+
                 window.location.href = res.data.url; // redirect to Stripe checkout
             }
         } catch (err) {
@@ -108,6 +122,7 @@ const BookingForm = () => {
             await axiosSecure.post('/orders', orderData);
 
             if (product.payment === 'payfirst') {
+                const isSuspended = dbUser?.status === 'suspended';
                 handlePayment();
             } else {
                 navigate('/my-orders');

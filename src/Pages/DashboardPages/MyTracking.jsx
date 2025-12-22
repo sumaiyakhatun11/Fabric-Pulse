@@ -12,6 +12,10 @@ const MyTracking = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        document.title = "My Tracking | FabricPulse";
+    }, []);
+
+    useEffect(() => {
         if (!user?.email) return;
 
         axiosSecure

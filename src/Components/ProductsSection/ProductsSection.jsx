@@ -21,18 +21,26 @@ const ProductsSection = () => {
                 <p className="text-center">No products available.</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    {products.map(product => (
-                        <div key={product._id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                    {products.map((product, idx) => (
+                        <motion.div
+                            key={product._id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: idx * 0.1 }}
+                            whileHover={{ scale: 1.02 }}
+                            className="bg-base-100 border border-base-200 shadow rounded-lg overflow-hidden"
+                        >
                             <img
                                 src={product.productImagesUrl}
                                 alt={product.name}
                                 className="w-full h-48 object-cover"
                             />
                             <div className="p-4">
-                                <h3 className="font-semibold text-xl mb-2">{product.name}</h3>
-                                <p className="text-gray-600 mb-1"><strong>Category:</strong> {product.category}</p>
-                                <p className="text-gray-600 mb-1"><strong>Price:</strong> ৳ {product.price}</p>
-                                <p className="text-gray-600 mb-4"><strong>Available:</strong> {product.availableQuantity}</p>
+                                <h3 className="font-semibold text-xl mb-2 text-base-content">{product.name}</h3>
+                                <p className="text-base-content/70 mb-1"><strong>Category:</strong> {product.category}</p>
+                                <p className="text-base-content/70 mb-1"><strong>Price:</strong> ৳ {product.price}</p>
+                                <p className="text-base-content/70 mb-4"><strong>Available:</strong> {product.quantity}</p>
 
                                 <Link
                                     to={`/product/${product._id}`}
@@ -41,7 +49,7 @@ const ProductsSection = () => {
                                     View Details
                                 </Link>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             )}

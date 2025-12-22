@@ -74,6 +74,19 @@ const Profile = () => {
                 <p className="mb-2"><strong>Role:</strong> {currentUser?.role || 'Buyer'}</p>
                 <p className="mb-2"><strong>Status:</strong> {currentUser?.status || 'pending'}</p>
 
+                {currentUser?.status === 'suspended' && (
+                    <div className="mt-4 p-4 rounded-lg border border-red-300 bg-red-50">
+                        <h3 className="text-lg font-semibold text-red-700">Account Suspended</h3>
+                        {currentUser?.suspensionReason && (
+                            <p className="mt-2 text-sm"><strong>Reason:</strong> {currentUser.suspensionReason}</p>
+                        )}
+                        {currentUser?.suspensionFeedback && (
+                            <p className="mt-1 text-sm"><strong>Feedback:</strong> {currentUser.suspensionFeedback}</p>
+                        )}
+                        <p className="mt-2 text-xs text-red-600">You can view your existing orders and profile, but actions like booking new orders or adding products are restricted.</p>
+                    </div>
+                )}
+
                 <div className="flex justify-between mt-4 gap-2">
                     <button
                         onClick={handleUpdateToggle}
@@ -84,7 +97,7 @@ const Profile = () => {
 
                     <button
                         onClick={handleLogout}
-                        className="px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#713600] via-[#8a4200] to-[#a64e00] hover:from-[#5a2b00] hover:via-[#713600] hover:to-[#8a4200] transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
+                        className="btn btn-primary w-1/2"
                     >
                         Logout
                     </button>

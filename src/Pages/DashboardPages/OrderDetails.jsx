@@ -11,6 +11,10 @@ const OrderDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    useEffect(() => {
+        document.title = "Order Details | FabricPulse";
+    }, []);
+
     const fetchOrder = async () => {
         try {
             setLoading(true);
@@ -60,10 +64,10 @@ const OrderDetails = () => {
                 <p>
                     <strong>Status:</strong>{' '}
                     <span className={`badge ${order.status === 'approved'
-                            ? 'badge-success'
-                            : order.status === 'rejected'
-                                ? 'badge-error'
-                                : 'badge-warning'
+                        ? 'badge-success'
+                        : order.status === 'rejected'
+                            ? 'badge-error'
+                            : 'badge-warning'
                         }`}>
                         {order.status}
                     </span>

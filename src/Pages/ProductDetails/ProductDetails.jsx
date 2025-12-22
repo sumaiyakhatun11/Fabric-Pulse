@@ -13,6 +13,10 @@ const ProductDetails = () => {
     const [dbUser, setDbUser] = useState(null);
 
     useEffect(() => {
+        document.title = "Product Details | FabricPulse";
+    }, []);
+
+    useEffect(() => {
         axiosSecure.get(`/products/${id}`)
             .then(res => setProduct(res.data))
             .catch(err => console.error(err));
@@ -29,12 +33,13 @@ const ProductDetails = () => {
 
     if (!product) return <p>Loading...</p>;
 
-    // Show button only for logged-in users who are NOT Admin or Manager
+    // Show button only for logged-in users who are NOT Admin or Manager and not suspended
     const canOrder =
         user &&
         dbUser &&
         dbUser.role !== 'admin' &&
-        dbUser.role !== 'manager';
+        dbUser.role !== 'manager' &&
+        dbUser.status !== 'suspended';
 
     const handleOrderRedirect = () => {
         // Redirect to Booking / Order Form page
@@ -61,6 +66,12 @@ const ProductDetails = () => {
                     <p><strong>Available:</strong> {product.quantity}</p>
                     <p><strong>Minimum Order:</strong> {product.moq}</p>
                     <p><strong>Payment:</strong> {product.payment}</p>
+
+                    {dbUser?.status === 'suspended' && (
+                        <div className="alert alert-error my-3">
+                            <span>Your account is suspended. You cannot place new orders.</span>
+                        </div>
+                    )}
 
                     {canOrder ? (
                         <button

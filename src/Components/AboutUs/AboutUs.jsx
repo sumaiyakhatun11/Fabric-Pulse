@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const AboutUs = () => {
+    useEffect(() => {
+        document.title = "About Us | FabricPulse";
+    }, []);
+
     return (
         <div className="container mx-auto p-16 ">
 

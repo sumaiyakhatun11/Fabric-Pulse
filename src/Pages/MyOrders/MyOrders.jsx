@@ -12,6 +12,10 @@ const MyOrders = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        document.title = "My Orders | FabricPulse";
+    }, []);
+
+    useEffect(() => {
         if (!user?.email) return;
 
         axiosSecure
@@ -85,8 +89,8 @@ const MyOrders = () => {
                                 <td>
                                     <span
                                         className={`badge ${order.status === 'pending'
-                                                ? 'badge-warning'
-                                                : 'badge-success'
+                                            ? 'badge-warning'
+                                            : 'badge-success'
                                             }`}
                                     >
                                         {order.status}

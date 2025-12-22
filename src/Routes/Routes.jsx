@@ -17,7 +17,7 @@ import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 import MyOrders from '../Pages/MyOrders/MyOrders';
 import BookingForm from '../Pages/BookingPage/BookingPage';
 import AboutUs from '../Components/AboutUs/AboutUs';
-import ContactUs from '../Components/ContactUs/ContactUs';
+
 import PaymentSuccess from '../Pages/PaymentSuccess/PaymentSuccess';
 import PendingOrders from '../Pages/DashboardPages/PendingOrders';
 import OrderDetails from '../Pages/DashboardPages/OrderDetails';
@@ -33,6 +33,7 @@ import ManagerDashboard from '../Pages/DashboardPages/ManagerDashboard';
 import ManagerLandingPage from '../Pages/DashboardPages/ManagerLandingPage';
 import BuyerLandingPage from '../Pages/DashboardPages/BuyerLandingPage';
 import AllProductsTable from '../Pages/DashboardPages/AllProductsTable';
+import ContactUs from '../Components/ContactUs/ContactUs';
 
 const router = createBrowserRouter([
     {
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/about-us',
-                element: <PrivateRoutes><AboutUs></AboutUs></PrivateRoutes>
+                element: <AboutUs></AboutUs>
             },
             {
                 path: '/contact',

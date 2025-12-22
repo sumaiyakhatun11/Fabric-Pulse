@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 
@@ -14,6 +14,10 @@ const AddTracking = () => {
         location: '',
         note: ''
     });
+
+    useEffect(() => {
+        document.title = "Add Tracking | FabricPulse";
+    }, []);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });

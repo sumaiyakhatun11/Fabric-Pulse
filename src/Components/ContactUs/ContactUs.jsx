@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ContactUs = () => {
     const [status, setStatus] = useState('');
+
+    useEffect(() => {
+        document.title = "Contact Us | FabricPulse";
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();

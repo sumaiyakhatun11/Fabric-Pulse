@@ -14,6 +14,10 @@ const ManagerLandingPage = () => {
         totalSalesQty: 0,
     });
 
+    useEffect(() => {
+        document.title = "Manager Dashboard | FabricPulse";
+    }, []);
+
     const [recentOrders, setRecentOrders] = useState([]);
     const [isSuspended, setIsSuspended] = useState(false);
     const [suspensionReason, setSuspensionReason] = useState('');

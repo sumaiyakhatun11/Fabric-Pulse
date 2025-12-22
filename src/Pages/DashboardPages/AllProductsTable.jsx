@@ -5,6 +5,8 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 const AllProductsTable = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
@@ -24,6 +26,12 @@ const AllProductsTable = () => {
                 setLoading(false);
             });
     };
+
+    // Pagination logic
+    const totalPages = Math.ceil(products.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedProducts = products.slice(startIndex, endIndex);
 
     if (loading) {
         return (
@@ -62,9 +70,9 @@ const AllProductsTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map((product, index) => (
+                            {paginatedProducts.map((product, index) => (
                                 <tr key={product._id}>
-                                    <td>{index + 1}</td>
+                                    <td>{startIndex + index + 1}</td>
                                     <td>
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
@@ -82,8 +90,8 @@ const AllProductsTable = () => {
                                     </td>
                                     <td className="font-medium">৳{product.price}</td>
                                     <td>
-                                        <span className={`badge ${product.availableQuantity > 0 ? 'badge-success' : 'badge-error'}`}>
-                                            {product.availableQuantity}
+                                        <span className={`badge ${product.quantity > 0 ? 'badge-success' : 'badge-error'}`}>
+                                            {product.quantity}
                                         </span>
                                     </td>
                                     <td className="text-sm text-gray-600">{product.managerEmail || 'N/A'}</td>
@@ -100,6 +108,35 @@ const AllProductsTable = () => {
                         </tbody>
                     </table>
                 </div>
+
+            )}
+            <div className="flex justify-center items-center gap-2 mt-6">
+                <button
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPage === 1}
+                    className="btn btn-sm btn-outline"
+                >
+                    Previous
+                </button>
+                <div className="flex gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                        <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className={`btn btn-sm ${currentPage === page ? 'btn-primary' : 'btn-outline'}`}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                </div>
+                <button
+                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                    disabled={currentPage === totalPages}
+                    className="btn btn-sm btn-outline"
+                >
+                    Next
+                </button>
+            </div>
             )}
         </div>
     );

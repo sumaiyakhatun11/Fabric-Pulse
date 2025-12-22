@@ -8,6 +8,10 @@ const ApprovedOrders = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        document.title = "Approved Orders | FabricPulse";
+    }, []);
+
+    useEffect(() => {
         axiosSecure.get('/approved-orders')
             .then(res => {
                 setOrders(res.data);

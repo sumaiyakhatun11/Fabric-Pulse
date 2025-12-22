@@ -11,6 +11,10 @@ const MainDashboard = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
 
+    useEffect(() => {
+        document.title = "Admin Dashboard | FabricPulse";
+    }, []);
+
     const [stats, setStats] = useState({
         totalProducts: 0,
         totalOrders: 0,

@@ -11,6 +11,12 @@ const ManageProducts = () => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+
+    useEffect(() => {
+        document.title = "Manage Products | FabricPulse";
+    }, []);
 
     // Fetch products
     useEffect(() => {
@@ -52,6 +58,12 @@ const ManageProducts = () => {
         product.category.toLowerCase().includes(search.toLowerCase())
     );
 
+    // Pagination logic
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+
     if (loading) {
         return <p className="text-center mt-10">Loading products...</p>;
     }
@@ -82,14 +94,14 @@ const ManageProducts = () => {
                     </thead>
 
                     <tbody>
-                        {filteredProducts.length === 0 ? (
+                        {paginatedProducts.length === 0 ? (
                             <tr>
                                 <td colSpan="5" className="text-center">
                                     No products found
                                 </td>
                             </tr>
                         ) : (
-                            filteredProducts.map(product => (
+                            paginatedProducts.map(product => (
                                 <tr key={product._id}>
                                     <td>
                                         <img
@@ -129,6 +141,37 @@ const ManageProducts = () => {
                     </tbody>
                 </table>
             </div>
+
+            {/* Pagination */}
+            {filteredProducts.length > 0 && (
+                <div className="flex justify-center items-center gap-2 mt-6">
+                    <button
+                        onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                        disabled={currentPage === 1}
+                        className="btn btn-sm btn-outline"
+                    >
+                        Previous
+                    </button>
+                    <div className="flex gap-1">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`btn btn-sm ${currentPage === page ? 'btn-primary' : 'btn-outline'}`}
+                            >
+                                {page}
+                            </button>
+                        ))}
+                    </div>
+                    <button
+                        onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                        disabled={currentPage === totalPages}
+                        className="btn btn-sm btn-outline"
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
         </div>
     );
 };

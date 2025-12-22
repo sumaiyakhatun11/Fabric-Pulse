@@ -1,18 +1,28 @@
 import axios from 'axios';
-import React, { use, useContext, useState } from 'react';
+import React, { use, useContext, useState, useEffect } from 'react';
 import { Await } from 'react-router';
 // import useAxios from '../../Hooks/Hooks';
 import { AuthContext } from '../../Provider/AuthProvider';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AddProducts = () => {
-    const { user } = useContext(AuthContext);
+    const { user, dbUser } = useContext(AuthContext);
 
     // const axiosInstance = useAxios();
     const axiosSecure = useAxiosSecure();
 
+    useEffect(() => {
+        document.title = "Add Product | FabricPulse";
+    }, []);
+
+    const isSuspended = dbUser?.status === 'suspended';
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isSuspended) {
+            alert('Your account is suspended. You cannot add new products.');
+            return;
+        }
         const form = e.target;
         const name = form.name.value;
         const title = form.title.value;
@@ -83,6 +93,11 @@ const AddProducts = () => {
 
         <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
             <h2 className="text-2xl font-semibold mb-4">Add Product</h2>
+            {isSuspended && (
+                <div className="alert alert-error mb-4">
+                    <span>Your account is suspended. You cannot add new products.</span>
+                </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-4">
 
                 <input
@@ -90,6 +105,7 @@ const AddProducts = () => {
                     name="title"
                     placeholder="Product Name / Title"
                     className="w-full border p-2 rounded"
+                    disabled={isSuspended}
 
                     required
                 />
@@ -98,6 +114,7 @@ const AddProducts = () => {
                     name="description"
                     placeholder="Product Description"
                     className="w-full border p-2 rounded"
+                    disabled={isSuspended}
                     rows={4}
 
                     required
@@ -106,6 +123,7 @@ const AddProducts = () => {
                 <select
                     name="category"
                     className="w-full border p-2 rounded"
+                    disabled={isSuspended}
 
                     required
                 >
@@ -121,6 +139,7 @@ const AddProducts = () => {
                     name="price"
                     placeholder="Price"
                     className="w-full border p-2 rounded"
+                    disabled={isSuspended}
 
                     required
                 />
@@ -130,6 +149,7 @@ const AddProducts = () => {
                     name="quantity"
                     placeholder="Available Quantity"
                     className="w-full border p-2 rounded"
+                    disabled={isSuspended}
 
                     required
                 />
@@ -149,6 +169,7 @@ const AddProducts = () => {
                     multiple
                     accept="image/*"
                     className="w-full"
+                    disabled={isSuspended}
                 />
 
                 <input
@@ -156,12 +177,14 @@ const AddProducts = () => {
                     name="video"
                     placeholder="Demo Video Link (optional)"
                     className="w-full border p-2 rounded"
+                    disabled={isSuspended}
 
                 />
 
                 <select
                     name="payment"
                     className="w-full border p-2 rounded"
+                    disabled={isSuspended}
 
                     required
                 >
@@ -175,13 +198,15 @@ const AddProducts = () => {
                         type="checkbox"
                         name="showHome"
 
+                        disabled={isSuspended}
                     />
                     Show on Home Page
                 </label>
 
                 <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                    className={`btn w-full ${isSuspended ? 'btn-disabled' : 'btn-primary'}`}
+                    disabled={isSuspended}
                 >
                     Save Product
                 </button>

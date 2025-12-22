@@ -11,6 +11,10 @@ const UpdateProduct = () => {
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
+        document.title = "Update Product | FabricPulse";
+    }, []);
+
+    useEffect(() => {
         axiosInstance
             .get(`/manager/product/${id}`)
             .then(res => {

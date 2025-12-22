@@ -14,6 +14,10 @@ const BuyerLandingPage = () => {
         shippedOrders: 0,
     });
 
+    useEffect(() => {
+        document.title = "Buyer Dashboard | FabricPulse";
+    }, []);
+
     const [recentOrders, setRecentOrders] = useState([]);
     const [isSuspended, setIsSuspended] = useState(false);
     const [loading, setLoading] = useState(true);
