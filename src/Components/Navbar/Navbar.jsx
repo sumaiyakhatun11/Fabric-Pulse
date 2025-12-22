@@ -33,7 +33,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="w-full bg-[#e6e4e4] text-black shadow-lg px-6 py-4 flex items-center justify-between md:justify-between">
+        <nav className="w-full bg-purple-70 text-black shadow-lg px-6 py-4 flex items-center justify-between md:justify-between">
 
             {/* Logo */}
             <div className="flex items-center gap-2 text-2xl font-bold text-[#827e7b] tracking-wide">
