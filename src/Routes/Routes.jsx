@@ -33,6 +33,7 @@ import ManagerDashboard from '../Pages/DashboardPages/ManagerDashboard';
 import ManagerLandingPage from '../Pages/DashboardPages/ManagerLandingPage';
 import BuyerLandingPage from '../Pages/DashboardPages/BuyerLandingPage';
 import AllProductsTable from '../Pages/DashboardPages/AllProductsTable';
+import AllOrders from '../Pages/DashboardPages/AllOrders';
 import ContactUs from '../Components/ContactUs/ContactUs';
 
 const router = createBrowserRouter([
@@ -131,6 +132,11 @@ const router = createBrowserRouter([
             {
                 path: 'all-products',
                 element: <AllProductsTable></AllProductsTable>
+
+            },
+            {
+                path: 'all-orders',
+                element: <AllOrders></AllOrders>
 
             },
             {

@@ -34,6 +34,15 @@ const BookingForm = () => {
             .catch(err => console.error(err));
     }, [id, axiosSecure]);
 
+    // Fetch user details
+    useEffect(() => {
+        if (user?.email) {
+            axiosSecure.get(`/users/email/${user.email}`)
+                .then(res => setDbUser(res.data))
+                .catch(err => console.error(err));
+        }
+    }, [user, axiosSecure]);
+
     // Set default quantity = MOQ
     useEffect(() => {
         if (product) {
@@ -80,15 +89,6 @@ const BookingForm = () => {
             });
 
             if (res.data.url) {
-                // Fetch user details
-                useEffect(() => {
-                    if (user?.email) {
-                        axiosSecure.get(`/users/email/${user.email}`)
-                            .then(res => setDbUser(res.data))
-                            .catch(err => console.error(err));
-                    }
-                }, [user, axiosSecure]);
-
                 window.location.href = res.data.url; // redirect to Stripe checkout
             }
         } catch (err) {
@@ -140,7 +140,7 @@ const BookingForm = () => {
                 {/* Read-only fields */}
                 <input type="email" value={user.email} readOnly className="input input-bordered w-full" />
                 <input type="text" value={product.title} readOnly className="input input-bordered w-full" />
-                <input type="text" value={`Price: $${Number(product.price)}`} readOnly className="input input-bordered w-full" />
+                <input type="text" value={`Price: ৳${Number(product.price)}`} readOnly className="input input-bordered w-full" />
 
                 {/* Editable fields */}
                 <input

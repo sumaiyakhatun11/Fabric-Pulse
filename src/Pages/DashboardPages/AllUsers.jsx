@@ -156,15 +156,18 @@ const AllUsers = () => {
                                 <td className="px-4 py-2">{u.name}</td>
                                 <td className="px-4 py-2">{u.email}</td>
                                 <td className="px-4 py-2">
-                                    <select
-                                        value={u.role}
-                                        onChange={(e) => handleRoleChange(u._id, e.target.value)}
-                                        className="border px-2 py-1 rounded"
-                                    >
-                                        <option value="buyer">Buyer</option>
-                                        <option value="manager">Manager</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
+                                    {u.role === 'admin' ? (
+                                        <span className="badge badge-warning">{u.role}</span>
+                                    ) : (
+                                        <select
+                                            value={u.role}
+                                            onChange={(e) => handleRoleChange(u._id, e.target.value)}
+                                            className="border px-2 py-1 rounded"
+                                        >
+                                            <option value="buyer">Buyer</option>
+                                            <option value="manager">Manager</option>
+                                        </select>
+                                    )}
                                 </td>
                                 <td className="px-4 py-2">
                                     {u.status}

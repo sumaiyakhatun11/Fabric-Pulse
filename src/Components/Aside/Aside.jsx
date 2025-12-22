@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import logo from '../../assets/logo.png';
 
 
 
@@ -11,19 +12,13 @@ const Aside = () => {
 
     return (
         <aside className="w-64 bg-base-100 border-r border-base-300 h-screen p-6 overflow-y-auto shadow-lg">
+            <img src={logo} className='h-20' alt="FabricPulse Logo" />
             {/* Logo/Dashboard Title */}
             <Link to="/dashboard" className="text-2xl font-bold mb-8 block text-primary hover:opacity-80 transition">
-                🎛️ Dashboard
+                Dashboard
             </Link>
 
             <nav className="space-y-1">
-                {/* Back Home */}
-                <Link
-                    to="/"
-                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
-                >
-                    🏠 Back to Home
-                </Link>
 
                 {/* Admin Menu */}
                 {role === 'admin' && (
@@ -32,15 +27,21 @@ const Aside = () => {
                             <p className="text-xs font-bold uppercase text-base-content/60 px-4 mb-3">Admin Panel</p>
                             <Link
                                 to="/dashboard/all-users"
-                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                             >
-                                👥 All Users
+                                All Users
                             </Link>
                             <Link
                                 to="/dashboard/all-products"
-                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                             >
-                                📦 All Products
+                                All Products
+                            </Link>
+                            <Link
+                                to="/dashboard/all-orders"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
+                            >
+                                All Orders
                             </Link>
                         </div>
                     </>
@@ -56,33 +57,33 @@ const Aside = () => {
                                     className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg opacity-50 cursor-not-allowed text-base-content font-medium"
                                     title="Suspended — cannot add products"
                                 >
-                                    ➕ Add Product
+                                    Add Product
                                 </button>
                             ) : (
                                 <Link
                                     to="/dashboard/add-product"
-                                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                                 >
-                                    ➕ Add Product
+                                    Add Product
                                 </Link>
                             )}
                             <Link
                                 to="/dashboard/manage-product"
-                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                             >
-                                📦 Manage Product
+                                Manage Product
                             </Link>
                             <Link
                                 to="/dashboard/pending-orders"
-                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                             >
-                                ⏳ Pending Orders
+                                Pending Orders
                             </Link>
                             <Link
                                 to="/dashboard/approved-orders"
-                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                             >
-                                ✅ Approved Orders
+                                Approved Orders
                             </Link>
                         </div>
                     </>
@@ -95,15 +96,15 @@ const Aside = () => {
                             <p className="text-xs font-bold uppercase text-base-content/60 px-4 mb-3">Buyer Panel</p>
                             <Link
                                 to="/dashboard/my-orders"
-                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                             >
-                                📋 My Orders
+                                My Orders
                             </Link>
                             <Link
                                 to="/dashboard/my-tracking"
-                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-base-200 transition font-medium"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-base-content hover:bg-purple-300 transition font-medium"
                             >
-                                🚚 My Tracking
+                                My Tracking
                             </Link>
                         </div>
                     </>

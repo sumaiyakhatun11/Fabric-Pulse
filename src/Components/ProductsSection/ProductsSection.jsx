@@ -8,8 +8,13 @@ const ProductsSection = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axiosSecure.get('/products?limit=6')
-            .then(res => setProducts(res.data))
+        axiosSecure.get('/products?limit=6&sort=createdAt&order=desc')
+            .then(res => {
+                const data = Array.isArray(res.data) ? res.data : [];
+                // Sort by createdAt descending (newest first) and take first 6 as fallback
+                const sorted = data.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)).slice(0, 6);
+                setProducts(sorted);
+            })
             .catch(err => console.error(err));
     }, [axiosSecure]);
 

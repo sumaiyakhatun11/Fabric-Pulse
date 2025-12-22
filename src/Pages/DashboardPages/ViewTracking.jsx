@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const ViewTracking = () => {
     const { order_id } = useParams();
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
+    const { role } = useContext(AuthContext);
 
     const [trackingUpdates, setTrackingUpdates] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -51,12 +53,15 @@ const ViewTracking = () => {
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">Tracking Timeline</h2>
 
-                <Link
-                    to={`/dashboard/add-tracking/${order_id}`}
-                    className="btn btn-sm btn-success"
-                >
-                    Update Tracking
-                </Link>
+                {/* Only managers can update tracking */}
+                {role === 'manager' && (
+                    <Link
+                        to={`/dashboard/add-tracking/${order_id}`}
+                        className="btn btn-sm btn-success"
+                    >
+                        Update Tracking
+                    </Link>
+                )}
             </div>
 
             <div className="space-y-4">

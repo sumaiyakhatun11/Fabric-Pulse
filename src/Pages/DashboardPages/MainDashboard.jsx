@@ -364,12 +364,12 @@ const MainDashboard = () => {
                 </Link>
 
                 <Link
-                    to="/dashboard/pending-orders"
+                    to="/dashboard/all-orders"
                     className="bg-orange-500 hover:bg-orange-600 text-white p-6 rounded-lg shadow-lg transition text-center"
                 >
                     <p className="text-4xl mb-2">📑</p>
                     <h3 className="text-xl font-bold">All Orders</h3>
-                    <p className="text-sm opacity-90 mt-2">Review pending orders</p>
+                    <p className="text-sm opacity-90 mt-2">Review all orders</p>
                 </Link>
             </div>
         </div>

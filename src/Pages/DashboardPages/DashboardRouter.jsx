@@ -4,7 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const DashboardRouter = () => {
-    const { user, role: contextRole } = useContext(AuthContext);
+    const { user, role: contextRole, refreshDbUser } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const [userRole, setUserRole] = useState(null);
@@ -13,24 +13,29 @@ const DashboardRouter = () => {
     useEffect(() => {
         const fetchUserRole = async () => {
             try {
-                // Prefer contextRole if already available
+                setLoading(true);
+
+                // Always pull fresh data to reflect latest role changes
+                const profile = await refreshDbUser?.();
+
+                if (profile?.role) {
+                    setUserRole(profile.role);
+                    return;
+                }
+
+                // Fallback to context role or API if profile missing
                 if (contextRole) {
                     setUserRole(contextRole);
-                    setLoading(false);
                     return;
                 }
 
                 if (!user?.email) {
                     setUserRole('buyer');
-                    setLoading(false);
                     return;
                 }
+
                 const res = await axiosSecure.get(`/user/${user.email}`);
-                if (res.data?.role) {
-                    setUserRole(res.data.role);
-                } else {
-                    setUserRole('buyer');
-                }
+                setUserRole(res.data?.role || 'buyer');
             } catch (error) {
                 console.error('Failed to fetch user role', error);
                 setUserRole('buyer');
@@ -40,7 +45,7 @@ const DashboardRouter = () => {
         };
 
         fetchUserRole();
-    }, [axiosSecure, user?.email, contextRole]);
+    }, [axiosSecure, user?.email, contextRole, refreshDbUser]);
 
     // Sync role from context whenever it becomes available
     useEffect(() => {
