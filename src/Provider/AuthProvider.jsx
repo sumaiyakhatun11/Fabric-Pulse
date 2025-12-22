@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
     const [dbUser, setDbUser] = useState(null);
 
     // Prefer env base URL but fall back to local dev
-    const apiBase = useMemo(() => import.meta.env.VITE_API_URL || 'http://localhost:3000', []);
+    const apiBase = useMemo(() => import.meta.env.VITE_API_URL || 'https://febricpulse.vercel.app', []);
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -88,11 +88,8 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         let active = true;
         const hydrate = async () => {
-            setLoading(true);
             const data = await fetchDbUser();
             if (!active) return;
-            // Loading state cleared after fetch completes
-            setLoading(false);
             return data;
         };
         hydrate();

@@ -46,13 +46,13 @@ const Profile = () => {
         logOut()
             .then(() => {
                 showToast('Logged out', 'success');
-                navigate('/login');
+                navigate('/');
             })
             .catch((error) => showToast(String(error), 'error'));
     };
 
     useEffect(() => {
-        document.title = "Profile | Game Hub";
+        document.title = "Profile|FabricPulse";
     }, []);
 
     if (loading) {
@@ -132,7 +132,7 @@ const Profile = () => {
             {isOpen && (
                 <form
                     onSubmit={handleSubmit}
-                    className="mt-4 bg-gray-400 p-6 rounded-lg shadow-md w-80 text-white"
+                    className=" bg-gray-400 p-6 rounded-lg shadow-md w-80 text-white"
                 >
                     <input
                         type="text"

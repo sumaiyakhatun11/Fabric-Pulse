@@ -86,6 +86,8 @@ const BookingForm = () => {
             const res = await axiosInstance.post('/create-payment-checkout', {
                 productName: product.title,
                 price: totalPrice, // must be a number
+                success_url: `${window.location.origin}/payment-success`,
+                cancel_url: `${window.location.origin}/booking/${id}`,
             });
 
             if (res.data.url) {

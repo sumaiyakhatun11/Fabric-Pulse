@@ -193,7 +193,7 @@ const MainDashboard = () => {
     }
 
     return (
-        <div className="p-6 bg-base-200 min-h-screen">
+        <div className="p-6  min-h-screen bg-purple-50">
             {/* Welcome Section */}
             <div className="mb-8">
                 <h1 className="text-4xl font-bold mb-2">👋 Welcome back, Admin</h1>

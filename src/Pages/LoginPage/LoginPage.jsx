@@ -47,11 +47,11 @@ const LoginPage = () => {
 
             // check if user already exists in DB
             const res = await axios.get(
-                `http://localhost:3000/users/email/${user.email}`
+                `https://febricpulse.vercel.app/users/email/${user.email}`
             );
 
             if (!res.data) {
-                await axios.post('http://localhost:3000/users', userInfo);
+                await axios.post('https://febricpulse.vercel.app/users', userInfo);
             }
 
             showToast('Login successful', 'success');

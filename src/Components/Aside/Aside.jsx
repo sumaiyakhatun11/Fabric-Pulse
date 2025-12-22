@@ -11,7 +11,7 @@ const Aside = () => {
     const isSuspended = dbUser?.status === 'suspended';
 
     return (
-        <aside className="w-64 bg-base-100 border-r border-base-300 h-screen p-6 overflow-y-auto shadow-lg">
+        <aside className="w-64  border-r border-base-300 h-full p-6 overflow-y-auto shadow-lg bg-purple-100 my-1">
             <img src={logo} className='h-20' alt="FabricPulse Logo" />
             {/* Logo/Dashboard Title */}
             <Link to="/dashboard" className="text-2xl font-bold mb-8 block text-primary hover:opacity-80 transition">
