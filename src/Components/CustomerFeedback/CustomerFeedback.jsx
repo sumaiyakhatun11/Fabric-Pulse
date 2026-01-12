@@ -4,9 +4,36 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 const feedbacks = [
-    { name: 'John Doe', text: 'Amazing products and fast delivery!' },
-    { name: 'Jane Smith', text: 'The quality is top-notch. Highly recommend.' },
-    { name: 'Alex Johnson', text: 'Very easy to order and the support is excellent.' },
+    { 
+        name: 'Md. Kamal Hossain', 
+        location: 'Dhaka',
+        text: 'অসাধারণ পণ্য এবং দ্রুত ডেলিভারি! Amazing quality and service. Highly recommended!' 
+    },
+    { 
+        name: 'Fatema Akter', 
+        location: 'Chittagong',
+        text: 'The quality is exceptional. আমি খুবই সন্তুষ্ট! Great experience with FabricPulse.' 
+    },
+    { 
+        name: 'Rakibul Islam', 
+        location: 'Sylhet',
+        text: 'Very easy to order and the support is excellent. পণ্যের মান অনেক ভালো। Will order again!' 
+    },
+    { 
+        name: 'Sadia Rahman', 
+        location: 'Rajshahi',
+        text: 'Outstanding service! ডেলিভারি সময়মত পেয়েছি। Product quality exceeded my expectations.' 
+    },
+    { 
+        name: 'Tanvir Ahmed', 
+        location: 'Khulna',
+        text: 'Best garments shop online! দাম এবং মান দুটোই দারুণ। Customer service is also very helpful.' 
+    },
+    { 
+        name: 'Nusrat Jahan', 
+        location: 'Pabna',
+        text: 'খুব সুন্দর পণ্য পেয়েছি! The fabric quality is excellent and delivery was fast. Loved it!' 
+    }
 ];
 
 const CustomerFeedback = () => {
@@ -28,8 +55,23 @@ const CustomerFeedback = () => {
                         className="bg-base-100 border border-base-300 p-6 rounded-lg shadow m-4"
                         whileHover={{ scale: 1.05 }}
                     >
-                        <p className="text-base-content/80 mb-3">"{f.text}"</p>
-                        <h4 className="font-bold text-base-content">{f.name}</h4>
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="avatar placeholder">
+                                <div className="bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-full w-12">
+                                    <span className="text-xl font-bold">{f.name.charAt(0)}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-base-content">{f.name}</h4>
+                                <p className="text-xs text-base-content/60">📍 {f.location}, Bangladesh</p>
+                            </div>
+                        </div>
+                        <p className="text-base-content/80 italic leading-relaxed">"{f.text}"</p>
+                        <div className="flex gap-1 mt-4">
+                            {[...Array(5)].map((_, i) => (
+                                <span key={i} className="text-yellow-500">⭐</span>
+                            ))}
+                        </div>
                     </motion.div>
                 ))}
             </Carousel>

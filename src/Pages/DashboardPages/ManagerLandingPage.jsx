@@ -297,10 +297,10 @@ const ManagerLandingPage = () => {
             </div>
 
             {/* Recent Orders */}
-            <div className="bg-white p-8 rounded-lg shadow-lg">
+            <div className="bg-neutral-800 p-8 rounded-lg shadow-lg border border-neutral-700">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold">Recent Orders</h2>
-                    <Link to="/dashboard/pending-orders" className="text-blue-500 hover:text-blue-700 text-sm">
+                    <h2 className="text-2xl font-bold text-white">Recent Orders</h2>
+                    <Link to="/dashboard/pending-orders" className="text-purple-400 hover:text-purple-300 text-sm">
                         View all →
                     </Link>
                 </div>
@@ -308,34 +308,34 @@ const ManagerLandingPage = () => {
                 {recentOrders.length === 0 ? (
                     <div className="text-center py-12">
                         <p className="text-6xl mb-4">📭</p>
-                        <p className="text-gray-500 text-lg">No orders yet</p>
-                        <p className="text-gray-400 text-sm mt-2">Your orders will appear here</p>
+                        <p className="text-neutral-400 text-lg">No orders yet</p>
+                        <p className="text-neutral-500 text-sm mt-2">Your orders will appear here</p>
                     </div>
                 ) : (
                     <div className="overflow-x-auto">
-                        <table className="table table-zebra w-full">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Product</th>
-                                    <th>Qty</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                        <table className="table w-full border border-neutral-700">
+                            <thead className="bg-neutral-700">
+                                <tr className="text-white">
+                                    <th className="border-neutral-600">Order ID</th>
+                                    <th className="border-neutral-600">Product</th>
+                                    <th className="border-neutral-600">Qty</th>
+                                    <th className="border-neutral-600">Status</th>
+                                    <th className="border-neutral-600">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {recentOrders.map(order => (
-                                    <tr key={order._id}>
-                                        <td className="whitespace-nowrap text-sm">{order._id}</td>
-                                        <td>{order.productTitle}</td>
-                                        <td>{order.quantity}</td>
-                                        <td>
+                                    <tr key={order._id} className="hover:bg-neutral-700 text-white border-neutral-700">
+                                        <td className="whitespace-nowrap text-sm border-neutral-700">{order._id}</td>
+                                        <td className="border-neutral-700">{order.productTitle}</td>
+                                        <td className="border-neutral-700" className="border-neutral-700">{order.quantity}</td>
+                                        <td className="border-neutral-700">
                                             <span className={`badge ${order.status === 'pending' ? 'badge-warning' :
                                                 order.status === 'approved' ? 'badge-success' : 'badge-info'}`}>
                                                 {order.status}
                                             </span>
                                         </td>
-                                        <td>
+                                        <td className="border-neutral-700">
                                             <Link
                                                 to={`/dashboard/order/${order._id}`}
                                                 className="btn btn-xs btn-primary"

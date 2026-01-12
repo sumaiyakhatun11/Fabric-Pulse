@@ -10,6 +10,17 @@ const LoginPage = () => {
     const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const fillDemoCredentials = (userType) => {
+        if (userType === 'admin') {
+            setEmail('admin@gmail.com');
+            setPassword('Admin321');
+        } else if (userType === 'manager') {
+            setEmail('manager@gmail.com');
+            setPassword('Manager321');
+        }
+    }
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -86,6 +97,7 @@ const LoginPage = () => {
                             placeholder="Email"
                             className="input input-bordered"
                             name='email'
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
@@ -99,8 +111,31 @@ const LoginPage = () => {
                             placeholder="Password"
                             className="input input-bordered"
                             name='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         {/* Forgot password removed */}
+                    </div>
+
+                    {/* Demo Credentials */}
+                    <div className="bg-neutral-100 dark:bg-neutral-800 p-4 rounded-lg border border-neutral-300 dark:border-neutral-700">
+                        <p className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Demo Credentials:</p>
+                        <div className="flex flex-col gap-2">
+                            <button
+                                type="button"
+                                onClick={() => fillDemoCredentials('admin')}
+                                className="btn btn-sm bg-purple-600 hover:bg-purple-700 text-white border-none"
+                            >
+                                👨‍💼 Admin Login
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => fillDemoCredentials('manager')}
+                                className="btn btn-sm bg-pink-600 hover:bg-pink-700 text-white border-none"
+                            >
+                                👔 Manager Login
+                            </button>
+                        </div>
                     </div>
 
                     <div className="form-control mt-4">

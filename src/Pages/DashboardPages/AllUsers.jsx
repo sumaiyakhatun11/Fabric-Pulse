@@ -105,19 +105,19 @@ const AllUsers = () => {
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-semibold mb-4">All Users</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white">All Users</h2>
 
             {/* Search & Filters */}
             <div className="flex flex-col md:flex-row gap-3 mb-4 items-center">
                 <input
                     type="text"
-                    className="input input-bordered w-full md:max-w-sm"
+                    className="input input-bordered w-full md:max-w-sm bg-neutral-800 text-white border-neutral-600 placeholder-neutral-500"
                     placeholder="Search by name or email"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <select
-                    className="select select-bordered w-full md:w-40"
+                    className="select select-bordered w-full md:w-40 bg-neutral-800 text-white border-neutral-600"
                     value={roleFilter}
                     onChange={(e) => setRoleFilter(e.target.value)}
                 >
@@ -127,7 +127,7 @@ const AllUsers = () => {
                     <option value="admin">Admin</option>
                 </select>
                 <select
-                    className="select select-bordered w-full md:w-44"
+                    className="select select-bordered w-full md:w-44 bg-neutral-800 text-white border-neutral-600"
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
                 >
@@ -136,52 +136,52 @@ const AllUsers = () => {
                     <option value="suspended">Suspended</option>
                     <option value="pending">Pending</option>
                 </select>
-                <div className="badge badge-primary">Total: {filteredUsers.length}</div>
+                <div className="badge badge-primary bg-purple-600 border-purple-600">Total: {filteredUsers.length}</div>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="table-auto w-full border">
+            <div className="overflow-x-auto bg-neutral-800 rounded-lg border border-neutral-700">
+                <table className="table-auto w-full">
                     <thead>
-                        <tr className="bg-gray-200">
-                            <th className="px-4 py-2">Name</th>
-                            <th className="px-4 py-2">Email</th>
-                            <th className="px-4 py-2">Role</th>
-                            <th className="px-4 py-2">Status</th>
-                            <th className="px-4 py-2">Actions</th>
+                        <tr className="bg-neutral-700 border-b border-neutral-600">
+                            <th className="px-4 py-2 text-white">Name</th>
+                            <th className="px-4 py-2 text-white">Email</th>
+                            <th className="px-4 py-2 text-white">Role</th>
+                            <th className="px-4 py-2 text-white">Status</th>
+                            <th className="px-4 py-2 text-white">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {paginatedUsers.map(u => (
-                            <tr key={u._id} className="text-center border-b">
-                                <td className="px-4 py-2">{u.name}</td>
-                                <td className="px-4 py-2">{u.email}</td>
+                            <tr key={u._id} className="text-center border-b border-neutral-700 hover:bg-neutral-700">
+                                <td className="px-4 py-2 text-neutral-300">{u.name}</td>
+                                <td className="px-4 py-2 text-neutral-300">{u.email}</td>
                                 <td className="px-4 py-2">
                                     {u.role === 'admin' ? (
-                                        <span className="badge badge-warning">{u.role}</span>
+                                        <span className="badge badge-warning bg-yellow-600 border-yellow-600">{u.role}</span>
                                     ) : (
                                         <select
                                             value={u.role}
                                             onChange={(e) => handleRoleChange(u._id, e.target.value)}
-                                            className="border px-2 py-1 rounded"
+                                            className="border px-2 py-1 rounded bg-neutral-700 text-white border-neutral-600"
                                         >
                                             <option value="buyer">Buyer</option>
                                             <option value="manager">Manager</option>
                                         </select>
                                     )}
                                 </td>
-                                <td className="px-4 py-2">
+                                <td className="px-4 py-2 text-neutral-300">
                                     {u.status}
                                 </td>
                                 <td className="px-4 py-2 flex justify-center gap-2">
                                     <button
                                         onClick={() => handleStatusChange(u._id, 'approved')}
-                                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded transition"
                                     >
                                         Approve
                                     </button>
                                     <button
                                         onClick={() => handleStatusChange(u._id, 'suspended')}
-                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                        className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
                                     >
                                         Suspend
                                     </button>
@@ -190,7 +190,7 @@ const AllUsers = () => {
                         ))}
                         {paginatedUsers.length === 0 && (
                             <tr>
-                                <td colSpan="5" className="py-4 text-center">
+                                <td colSpan="5" className="py-4 text-center text-neutral-400">
                                     No users found
                                 </td>
                             </tr>
@@ -204,7 +204,7 @@ const AllUsers = () => {
                 <button
                     onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                     disabled={currentPage === 1}
-                    className="btn btn-sm btn-outline"
+                    className="btn btn-sm btn-outline text-neutral-300 border-neutral-600 hover:bg-neutral-800"
                 >
                     Previous
                 </button>
@@ -213,7 +213,7 @@ const AllUsers = () => {
                         <button
                             key={page}
                             onClick={() => setCurrentPage(page)}
-                            className={`btn btn-sm ${currentPage === page ? 'btn-primary' : 'btn-outline'}`}
+                            className={`btn btn-sm ${currentPage === page ? 'btn-primary bg-purple-600 border-purple-600' : 'btn-outline text-neutral-300 border-neutral-600 hover:bg-neutral-800'}`}
                         >
                             {page}
                         </button>
@@ -222,7 +222,7 @@ const AllUsers = () => {
                 <button
                     onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                     disabled={currentPage === totalPages}
-                    className="btn btn-sm btn-outline"
+                    className="btn btn-sm btn-outline text-neutral-300 border-neutral-600 hover:bg-neutral-800"
                 >
                     Next
                 </button>
@@ -231,23 +231,23 @@ const AllUsers = () => {
             {/* Suspend Modal */}
             {suspendOpen && (
                 <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-                    <div className="bg-white rounded-xl p-6 w-full max-w-lg shadow-xl">
-                        <h3 className="text-xl font-semibold mb-4">Suspend User</h3>
+                    <div className="bg-neutral-800 rounded-xl p-6 w-full max-w-lg shadow-xl border border-neutral-700">
+                        <h3 className="text-xl font-semibold mb-4 text-white">Suspend User</h3>
                         <div className="space-y-3">
                             <label className="form-control w-full">
-                                <div className="label"><span className="label-text">Reason</span></div>
+                                <div className="label"><span className="label-text text-neutral-300">Reason</span></div>
                                 <input
                                     type="text"
-                                    className="input input-bordered w-full"
+                                    className="input input-bordered w-full bg-neutral-700 text-white border-neutral-600 placeholder-neutral-500"
                                     value={suspendReason}
                                     onChange={(e) => setSuspendReason(e.target.value)}
                                     placeholder="e.g., Policy violation, spam, etc."
                                 />
                             </label>
                             <label className="form-control w-full">
-                                <div className="label"><span className="label-text">Feedback (optional)</span></div>
+                                <div className="label"><span className="label-text text-neutral-300">Feedback (optional)</span></div>
                                 <textarea
-                                    className="textarea textarea-bordered h-24"
+                                    className="textarea textarea-bordered h-24 bg-neutral-700 text-white border-neutral-600 placeholder-neutral-500"
                                     value={suspendFeedback}
                                     onChange={(e) => setSuspendFeedback(e.target.value)}
                                     placeholder="Guidance or explanation for the user"
@@ -255,8 +255,8 @@ const AllUsers = () => {
                             </label>
                         </div>
                         <div className="flex justify-end gap-2 mt-5">
-                            <button className="btn btn-ghost" onClick={() => setSuspendOpen(false)}>Cancel</button>
-                            <button className="btn btn-primary" onClick={submitSuspension}>Suspend</button>
+                            <button className="btn btn-ghost text-neutral-300 hover:bg-neutral-700" onClick={() => setSuspendOpen(false)}>Cancel</button>
+                            <button className="btn btn-primary bg-purple-600 border-purple-600 hover:bg-purple-700" onClick={submitSuspension}>Suspend</button>
                         </div>
                     </div>
                 </div>

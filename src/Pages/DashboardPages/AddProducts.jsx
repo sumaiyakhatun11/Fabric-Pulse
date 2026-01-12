@@ -91,11 +91,11 @@ const AddProducts = () => {
 
     return (
 
-        <div className="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
-            <h2 className="text-2xl font-semibold mb-4">Add Product</h2>
+        <div className="max-w-xl mx-auto bg-white dark:bg-neutral-800 p-6 rounded-2xl shadow border border-neutral-200 dark:border-neutral-700">
+            <h2 className="text-2xl font-semibold mb-4 text-neutral-900 dark:text-white">Add Product</h2>
             {isSuspended && (
-                <div className="alert alert-error mb-4">
-                    <span>Your account is suspended. You cannot add new products.</span>
+                <div className="alert alert-error bg-red-100 dark:bg-red-900 border-red-300 dark:border-red-700 mb-4">
+                    <span className="text-red-800 dark:text-red-200">Your account is suspended. You cannot add new products.</span>
                 </div>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -104,7 +104,7 @@ const AddProducts = () => {
                     type="text"
                     name="title"
                     placeholder="Product Name / Title"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
 
                     required
@@ -113,7 +113,7 @@ const AddProducts = () => {
                 <textarea
                     name="description"
                     placeholder="Product Description"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
                     rows={4}
 
@@ -122,7 +122,7 @@ const AddProducts = () => {
 
                 <select
                     name="category"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
 
                     required
@@ -138,7 +138,7 @@ const AddProducts = () => {
                     type="number"
                     name="price"
                     placeholder="Price"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
 
                     required
@@ -148,7 +148,7 @@ const AddProducts = () => {
                     type="number"
                     name="quantity"
                     placeholder="Available Quantity"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
 
                     required
@@ -158,7 +158,7 @@ const AddProducts = () => {
                     type="number"
                     name="moq"
                     placeholder="Minimum Order Quantity (MOQ)"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
 
                     required
                 />
@@ -168,7 +168,7 @@ const AddProducts = () => {
                     name="images"
                     multiple
                     accept="image/*"
-                    className="w-full"
+                    className="w-full file-input file-input-bordered bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
                 />
 
@@ -176,14 +176,14 @@ const AddProducts = () => {
                     type="url"
                     name="video"
                     placeholder="Demo Video Link (optional)"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
 
                 />
 
                 <select
                     name="payment"
-                    className="w-full border p-2 rounded"
+                    className="w-full border p-2 rounded bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white border-neutral-300 dark:border-neutral-600"
                     disabled={isSuspended}
 
                     required
@@ -200,12 +200,12 @@ const AddProducts = () => {
 
                         disabled={isSuspended}
                     />
-                    Show on Home Page
+                    <span className="text-neutral-700 dark:text-neutral-300">Show on Home Page</span>
                 </label>
 
                 <button
                     type="submit"
-                    className={`btn w-full ${isSuspended ? 'btn-disabled' : 'btn-primary'}`}
+                    className={`btn w-full ${isSuspended ? 'btn-disabled' : 'btn-primary bg-purple-600 hover:bg-purple-700 border-purple-600'}`}
                     disabled={isSuspended}
                 >
                     Save Product

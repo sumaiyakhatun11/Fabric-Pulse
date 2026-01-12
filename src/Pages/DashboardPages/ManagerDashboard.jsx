@@ -257,37 +257,37 @@ const ManagerDashboard = () => {
             </div>
 
             {/* Recent Orders Table */}
-            <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="bg-neutral-800 p-6 rounded-lg shadow-lg border border-neutral-700">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-2xl font-bold">Recent Orders</h2>
-                    <p className="text-xs text-gray-500">Last 10 orders • Auto-refreshes every 30s</p>
+                    <h2 className="text-2xl font-bold text-white">Recent Orders</h2>
+                    <p className="text-xs text-neutral-400">Last 10 orders • Auto-refreshes every 30s</p>
                 </div>
                 {recentOrders.length === 0 ? (
-                    <p className="text-gray-500 text-center py-8">
+                    <p className="text-neutral-400 text-center py-8">
                         {loading ? '📦 Loading your orders...' : 'No orders yet. Your orders will appear here.'}
                     </p>
                 ) : (
                     <div className="overflow-x-auto">
-                        <table className="table table-zebra w-full">
-                            <thead>
-                                <tr className="bg-gray-100">
-                                    <th className="p-3">Order ID</th>
-                                    <th className="p-3">Product</th>
-                                    <th className="p-3">Qty</th>
-                                    <th className="p-3">Total Price</th>
-                                    <th className="p-3">User Email</th>
-                                    <th className="p-3">Status</th>
-                                    <th className="p-3">Action</th>
+                        <table className="table w-full border border-neutral-700">
+                            <thead className="bg-neutral-700">
+                                <tr className="text-white">
+                                    <th className="p-3 border-neutral-600">Order ID</th>
+                                    <th className="p-3 border-neutral-600">Product</th>
+                                    <th className="p-3 border-neutral-600">Qty</th>
+                                    <th className="p-3 border-neutral-600">Total Price</th>
+                                    <th className="p-3 border-neutral-600">User Email</th>
+                                    <th className="p-3 border-neutral-600">Status</th>
+                                    <th className="p-3 border-neutral-600">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {recentOrders.map(order => (
-                                    <tr key={order._id}>
-                                        <td className="p-3 font-mono text-sm">{order._id?.slice(0, 8)}...</td>
-                                        <td className="p-3 truncate max-w-xs">{order.productTitle}</td>
-                                        <td className="p-3">{order.quantity}</td>
-                                        <td className="p-3 font-semibold">৳ {order.totalPrice}</td>
-                                        <td className="p-3 text-sm truncate max-w-xs">{order.userEmail}</td>
+                                    <tr key={order._id} className="hover:bg-neutral-700 text-white border-neutral-700">
+                                        <td className="p-3 font-mono text-sm border-neutral-700">{order._id?.slice(0, 8)}...</td>
+                                        <td className="p-3 truncate max-w-xs border-neutral-700">{order.productTitle}</td>
+                                        <td className="p-3 border-neutral-700">{order.quantity}</td>
+                                        <td className="p-3 font-semibold border-neutral-700">৳ {order.totalPrice}</td>
+                                        <td className="p-3 text-sm truncate max-w-xs border-neutral-700">{order.userEmail}</td>
                                         <td className="p-3">
                                             <span
                                                 className={`badge ${order.status === 'pending'

@@ -33,43 +33,36 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="w-full bg-purple-70 text-black shadow-lg px-6 py-4 flex items-center justify-between md:justify-between">
+        <nav className="w-full bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-800 text-neutral-900 dark:text-white shadow-lg px-6 py-4 flex items-center justify-between md:justify-between border-b border-purple-100 dark:border-neutral-700 transition-colors duration-300">
 
             {/* Logo */}
-            <div className="flex items-center gap-2 text-2xl font-bold text-[#827e7b] tracking-wide">
+            <div className="flex items-center gap-2 text-2xl font-bold text-neutral-800 dark:text-white tracking-wide">
                 <img className="h-15 rounded-4xl" src={logo} alt="Logo" />
                 <Link to="/">
-                    <span className='text-purple-800'>Fabric</span><span className='text-pink-500'>Pulse</span>
+                    <span className='text-purple-600 dark:text-purple-400'>Fabric</span><span className='text-pink-500 dark:text-pink-400'>Pulse</span>
                 </Link>
             </div>
 
             {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-8 text-black font-medium">
-                <Link to="/" className="hover:text-purple-800">Home</Link>
-                <Link to="/about-us" className="hover:text-purple-800">About Us</Link>
-                <Link to="/contact" className="hover:text-purple-800">Contact Us</Link>
-                <Link to="/all-products" className="hover:text-purple-800">All Products</Link>
-
-
-
-
+            <div className="hidden md:flex items-center gap-8 text-neutral-800 dark:text-white font-medium">
+                <Link to="/" className="hover:text-purple-600 dark:hover:text-purple-400 transition">Home</Link>
+                <Link to="/about-us" className="hover:text-purple-600 dark:hover:text-purple-400 transition">About Us</Link>
+                <Link to="/contact" className="hover:text-purple-600 dark:hover:text-purple-400 transition">Contact Us</Link>
+                <Link to="/all-products" className="hover:text-purple-600 dark:hover:text-purple-400 transition">All Products</Link>
 
                 {user && (
                     <>
-                        <div className="flex items-center gap-8 text-black font-medium">
-
-                            <Link to="/dashboard" className="hover:text-purple-800">Dashboard</Link>
+                        <div className="flex items-center gap-8 text-neutral-800 dark:text-white font-medium">
+                            <Link to="/dashboard" className="hover:text-purple-600 dark:hover:text-purple-400 transition">Dashboard</Link>
                         </div>
                         <Link to="/profile">
                             <img
                                 src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.jpg"}
                                 referrerPolicy="no-referrer"
                                 alt="Profile"
-                                className="w-10 h-10 rounded-full border-2 border-purple-800 hover:scale-105 transition"
+                                className="w-10 h-10 rounded-full border-2 border-purple-500 dark:border-purple-400 hover:scale-105 transition"
                             />
                         </Link>
-
-
                     </>
                 )}
 
@@ -87,14 +80,14 @@ const Navbar = () => {
                 {user ? (
                     <button
                         onClick={handleLogout}
-                        className="btn btn-primary"
+                        className="btn btn-primary bg-purple-600 hover:bg-purple-700 border-purple-600 text-white"
                     >
                         Logout
                     </button>
                 ) : (
                     <Link
                         to="/login"
-                        className="btn btn-primary"
+                        className="btn btn-primary bg-purple-600 hover:bg-purple-700 border-purple-600 text-white"
                     >
                         Login
                     </Link>
@@ -103,7 +96,7 @@ const Navbar = () => {
 
             {/* Mobile Hamburger */}
             <div className="md:hidden flex items-center">
-                <button onClick={() => setMenuOpen(!menuOpen)} className="focus:outline-none">
+                <button onClick={() => setMenuOpen(!menuOpen)} className="focus:outline-none text-neutral-800 dark:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         {menuOpen ? (
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -116,23 +109,21 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="md:hidden mt-4 flex flex-col gap-4 px-4">
-                    <Link to="/" className="hover:text-purple-800">Home</Link>
-                    <Link to="/all-products" className="hover:text-purple-800">All Products</Link>
-                    <Link to="/about-us" className="hover:text-purple-800">About Us</Link>
-                    <Link to="/contact" className="hover:text-purple-800">Contact Us</Link>
+                <div className="md:hidden absolute top-20 left-0 right-0 bg-purple-50 dark:bg-neutral-800 border-b border-purple-100 dark:border-neutral-700 flex flex-col gap-4 px-6 py-4 shadow-lg">
+                    <Link to="/" className="text-neutral-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition">Home</Link>
+                    <Link to="/all-products" className="text-neutral-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition">All Products</Link>
+                    <Link to="/about-us" className="text-neutral-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition">About Us</Link>
+                    <Link to="/contact" className="text-neutral-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition">Contact Us</Link>
 
                     {user && (
                         <>
-                            <Link to="/addServices" className="hover:text-purple-800">Add Listing</Link>
-                            <Link to="/myServices" className="hover:text-purple-800">My Listings</Link>
-                            <Link to="/myOrders" className="hover:text-purple-800">My Orders</Link>
-                            <Link to="/profile" className="flex items-center gap-2">
+                            <Link to="/dashboard" className="text-neutral-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition">Dashboard</Link>
+                            <Link to="/profile" className="flex items-center gap-2 text-neutral-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition">
                                 <img
                                     src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.jpg"}
                                     referrerPolicy="no-referrer"
                                     alt="Profile"
-                                    className="w-10 h-10 rounded-full border-2 border-purple-800"
+                                    className="w-10 h-10 rounded-full border-2 border-purple-500 dark:border-purple-400"
                                 />
                                 Profile
                             </Link>
@@ -140,7 +131,7 @@ const Navbar = () => {
                     )}
 
                     {/* Theme Toggle */}
-                    <label className="flex gap-2 items-center">
+                    <label className="flex gap-2 items-center text-neutral-800 dark:text-white">
                         <input
                             type="checkbox"
                             checked={isDark}
@@ -154,14 +145,14 @@ const Navbar = () => {
                     {user ? (
                         <button
                             onClick={handleLogout}
-                            className="btn btn-primary"
+                            className="btn btn-primary bg-purple-600 hover:bg-purple-700 border-purple-600 text-white w-full"
                         >
                             Logout
                         </button>
                     ) : (
                         <Link
                             to="/login"
-                            className="btn btn-primary"
+                            className="btn btn-primary bg-purple-600 hover:bg-purple-700 border-purple-600 text-white w-full"
                         >
                             Login
                         </Link>

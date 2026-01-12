@@ -193,11 +193,11 @@ const MainDashboard = () => {
     }
 
     return (
-        <div className="p-6  min-h-screen bg-purple-50">
+        <div className="p-6 min-h-screen bg-neutral-900 text-white transition-colors duration-300">
             {/* Welcome Section */}
             <div className="mb-8">
-                <h1 className="text-4xl font-bold mb-2">👋 Welcome back, Admin</h1>
-                <p className="text-gray-600">Here’s what’s happening in your system today</p>
+                <h1 className="text-4xl font-bold mb-2 text-white">👋 Welcome back, Admin</h1>
+                <p className="text-neutral-400">Here's what's happening in your system today</p>
             </div>
 
             {/* Chart Filters */}
@@ -210,7 +210,10 @@ const MainDashboard = () => {
                     <button
                         key={opt.key}
                         onClick={() => setTimeFilter(opt.key)}
-                        className={`btn btn-sm ${timeFilter === opt.key ? 'btn-primary' : 'btn-outline'}`}
+                        className={`btn btn-sm transition-colors duration-300 ${timeFilter === opt.key 
+                            ? 'btn-primary bg-purple-600 hover:bg-purple-700 border-purple-600' 
+                            : 'btn-outline text-neutral-300 border-neutral-600 hover:bg-neutral-800'
+                        }`}
                     >
                         {opt.label}
                     </button>
@@ -289,14 +292,17 @@ const MainDashboard = () => {
             {/* Charts Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                 {/* Orders Over Time */}
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 className="text-xl font-bold mb-4">Orders Over Time ({filterLabel})</h3>
+                <div className="bg-neutral-800 p-6 rounded-lg shadow-lg border border-neutral-700">
+                    <h3 className="text-xl font-bold mb-4 text-white">Orders Over Time ({filterLabel})</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <LineChart data={chartData.orders}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis />
-                            <Tooltip />
+                            <CartesianGrid strokeDasharray="3 3" stroke="#404040" />
+                            <XAxis dataKey="date" stroke="#999" />
+                            <YAxis stroke="#999" />
+                            <Tooltip 
+                                contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151', color: '#f3f4f6' }}
+                                labelStyle={{ color: '#f3f4f6' }}
+                            />
                             <Legend />
                             <Line type="monotone" dataKey="orders" stroke="#3b82f6" strokeWidth={2} />
                         </LineChart>
@@ -304,14 +310,17 @@ const MainDashboard = () => {
                 </div>
 
                 {/* Products Added Over Time */}
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 className="text-xl font-bold mb-4">Products Added ({filterLabel})</h3>
+                <div className="bg-neutral-800 p-6 rounded-lg shadow-lg border border-neutral-700">
+                    <h3 className="text-xl font-bold mb-4 text-white">Products Added ({filterLabel})</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={chartData.products}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis />
-                            <Tooltip />
+                            <CartesianGrid strokeDasharray="3 3" stroke="#404040" />
+                            <XAxis dataKey="date" stroke="#999" />
+                            <YAxis stroke="#999" />
+                            <Tooltip 
+                                contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151', color: '#f3f4f6' }}
+                                labelStyle={{ color: '#f3f4f6' }}
+                            />
                             <Legend />
                             <Bar dataKey="products" fill="#8b5cf6" />
                         </BarChart>
@@ -320,8 +329,8 @@ const MainDashboard = () => {
             </div>
 
             {/* User Role Distribution */}
-            <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
-                <h3 className="text-xl font-bold mb-4">User Role Distribution</h3>
+            <div className="bg-neutral-800 p-6 rounded-lg shadow-lg border border-neutral-700 mb-8">
+                <h3 className="text-xl font-bold mb-4 text-white">User Role Distribution</h3>
                 <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
                         <Pie
@@ -347,7 +356,7 @@ const MainDashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Link
                     to="/dashboard/all-users"
-                    className="bg-blue-500 hover:bg-blue-600 text-white p-6 rounded-lg shadow-lg transition text-center"
+                    className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white p-6 rounded-lg shadow-lg transition text-center hover:shadow-xl hover:scale-105"
                 >
                     <p className="text-4xl mb-2">👥</p>
                     <h3 className="text-xl font-bold">Manage Users</h3>
@@ -356,7 +365,7 @@ const MainDashboard = () => {
 
                 <Link
                     to="/dashboard/manage-product"
-                    className="bg-purple-500 hover:bg-purple-600 text-white p-6 rounded-lg shadow-lg transition text-center"
+                    className="bg-gradient-to-br from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 dark:from-purple-600 dark:to-purple-700 dark:hover:from-purple-700 dark:hover:to-purple-800 text-white p-6 rounded-lg shadow-lg transition text-center hover:shadow-xl hover:scale-105"
                 >
                     <p className="text-4xl mb-2">📦</p>
                     <h3 className="text-xl font-bold">All Products</h3>
@@ -365,7 +374,7 @@ const MainDashboard = () => {
 
                 <Link
                     to="/dashboard/all-orders"
-                    className="bg-orange-500 hover:bg-orange-600 text-white p-6 rounded-lg shadow-lg transition text-center"
+                    className="bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 dark:from-orange-600 dark:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 text-white p-6 rounded-lg shadow-lg transition text-center hover:shadow-xl hover:scale-105"
                 >
                     <p className="text-4xl mb-2">📑</p>
                     <h3 className="text-xl font-bold">All Orders</h3>
